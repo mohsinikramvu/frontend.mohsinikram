@@ -26,9 +26,9 @@ export default function HeroSection() {
   }
 
   const socialIcons = [
-    { icon: "github", label: "GitHub" },
-    { icon: "linkedin", label: "LinkedIn" },
-    { icon: "twitter", label: "Twitter" },
+    { icon: "github", label: "GitHub", url: "https://github.com/mohsinikram" },
+    { icon: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/mohsinikram/" },
+    { icon: "twitter", label: "Twitter", url: "https://twitter.com/mohsinikram" },
   ]
 
   const skills = ["Node.js", "React", "Python", "JavaScript", "HTML", "TypeScript", "Google Cloud", "Docker"]
@@ -40,22 +40,9 @@ export default function HeroSection() {
       initial="hidden"
       animate="visible"
     >
-      {/* Floating decorative icons */}
-      <AnimatedIcon position="top-left" delay={0}>
-        <div className="bg-cyan-400 border-3 border-black p-3 rounded-lg hover:bg-cyan-300 transition-all duration-300 cursor-pointer">
-          <code className="text-lg font-black text-black">&lt;/&gt;</code>
-        </div>
-      </AnimatedIcon>
-
       <AnimatedIcon position="top-right" delay={0.2}>
         <div className="bg-yellow-primary border-3 border-black p-3 rounded-lg hover:bg-yellow-400 transition-all duration-300 cursor-pointer">
           <code className="text-lg font-black text-black">&gt;_</code>
-        </div>
-      </AnimatedIcon>
-
-      <AnimatedIcon position="bottom-left" delay={0.4} style={{ bottom: 150 }}>
-        <div className="bg-cyan-400 border-3 border-black p-2 rounded-lg hover:bg-cyan-300 transition-all duration-300 cursor-pointer">
-          <div className="w-6 h-6 bg-yellow-primary border-2 border-black" />
         </div>
       </AnimatedIcon>
 
@@ -82,7 +69,7 @@ export default function HeroSection() {
 
             {/* Description */}
             <motion.p variants={itemVariants} className="text-gray-700 text-lg leading-relaxed">
-              Based in Munich, Germany, I'm a Senior Software Engineer. I love to work with distributed systems, data
+              Based in Lahore, Pakistan, I'm a Senior Software Engineer. I love to work with distributed systems, data
               pipelines, and cloud technologies. I'm passionate about microservices, full-stack development, and
               building cool stuff.
             </motion.p>
@@ -166,23 +153,37 @@ export default function HeroSection() {
                 {/* <div className="absolute inset-0 bg-cyan-400/30 mix-blend-multiply" /> */}
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
               </div>
-            </motion.div>
-
-            {/* Floating decorator icons around avatar */}
-            <motion.div
-              className="absolute -top-4 -left-8 bg-cyan-400 border-3 border-black p-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
-              animate={{
-                y: [0, -15, 0],
-                rotate: [0, 5, -5, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-              whileHover={{ scale: 1.15, boxShadow: "0 8px 16px rgba(0,0,0,0.2)" }}
-            >
-              <code className="text-2xl font-black text-black">&lt;/&gt;</code>
+              {/* Floating decorator icons around avatar */}
+              <motion.div
+                className="absolute top-0 -left-8 bg-cyan-400 border-4 border-black p-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
+                animate={{
+                  x: [0, -25, 0],
+                  rotate: [0, 5, -15, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
+                whileHover={{ scale: 1.5, boxShadow: "0 8px 16px rgba(0,0,0,0.2)" }}
+              >
+                <code className="text-2xl font-black text-black">&lt;/&gt;</code>
+              </motion.div>
+              <motion.div
+                className="absolute -bottom-2 -left-10 bg-cyan-400 border-4 border-black p-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
+                animate={{
+                  rotate: [0, 360],
+                }}
+                transition={{
+                  duration: 4,
+                  delay: 0.6,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                }}
+                whileHover={{ scale: 1.15, boxShadow: "0 8px 16px rgba(0,0,0,0.2)" }}
+              >
+                <div className="w-7 h-6 border-4 border-black" />
+              </motion.div>
             </motion.div>
 
             <motion.div
@@ -203,7 +204,7 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.div
-              className="absolute top-1/2 -right-4 bg-cyan-400 border-3 border-black px-4 py-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
+              className="absolute bottom-0 right-10 bg-cyan-400 border-3 border-black px-4 py-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
               animate={{
                 x: [0, 10, 0],
               }}
@@ -218,21 +219,6 @@ export default function HeroSection() {
               <span className="font-bold text-black text-sm">Full-Stack Ninja</span>
             </motion.div>
 
-            <motion.div
-              className="absolute -bottom-2 left-0 bg-cyan-400 border-3 border-black p-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
-              animate={{
-                rotate: [0, 360],
-              }}
-              transition={{
-                duration: 4,
-                delay: 0.6,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-              }}
-              whileHover={{ scale: 1.15, boxShadow: "0 8px 16px rgba(0,0,0,0.2)" }}
-            >
-              <div className="w-5 h-5 border-3 border-black" />
-            </motion.div>
           </motion.div>
         </div>
 

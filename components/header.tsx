@@ -36,7 +36,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
             }}
             whileTap={{ scale: 0.95 }}
           >
-            MB
+            MI
           </motion.button>
         </div>
 
@@ -85,7 +85,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
               Get in Touch!
             </motion.button>
             <motion.button
-              className="bg-cyan-400 border-3 border-black w-10 h-10 flex items-center justify-center text-black font-bold cursor-pointer transition-all duration-300"
+              className="bg-cyan-400 border-3 border-black w-12 flex items-center justify-center text-black font-bold cursor-pointer transition-all duration-300"
               whileHover={{
                 scale: 1.1,
                 rotate: 15,

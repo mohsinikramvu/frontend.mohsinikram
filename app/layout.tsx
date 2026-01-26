@@ -11,7 +11,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: "MB - Developer Portfolio",
+  title: "MI - Developer Portfolio",
   description: "Animated portfolio and resume",
   generator: "v0.app",
   icons: {

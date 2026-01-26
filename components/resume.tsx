@@ -27,7 +27,7 @@ export default function Resume() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-white text-black m-6 shadow-2xs shadow-black border-4 border-black">
       <Header activeNav={activeNav} onNavChange={scrollToSection} />
 
       <div id="home">
