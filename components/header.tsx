@@ -31,21 +31,24 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
 
   return (
     <motion.header
-      className="bg-yellow border-b-4 border-black sticky top-0 z-50 pt-4 pb-2"
+      className={"navbar"}
       variants={{
         visible: { y: 0 },
-        hidden: { y: "-100%" },
+        hidden: { y: "-140%" },
       }}
       animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
+      style={{
+        boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)",
+      }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
     >
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <motion.button
             onClick={() => onNavChange?.("home")}
-            className="bg-cyan border-3 border-black px-4 py-2 font-black text-black text-xl cursor-pointer"
+            className="bg-cyan border-3 border-black rounded px-4 py-2 font-black text-black text-xl cursor-pointer"
             style={{
-              boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
+              boxShadow: "3px 3px 0px 0px rgba(0,0,0,1)",
             }}
             whileHover={{
               rotate: 2,
@@ -79,11 +82,16 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
           {/* LazyFire Badge */}
           <motion.div
             className="hidden lg:flex items-center gap-2 bg-white border-3 border-black px-4 py-2 cursor-pointer"
-            whileHover={{
-              scale: 1.05,
-              rotate: -2,
+            style={{
               boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
             }}
+            whileHover={{
+              scale: 1,
+              rotate: 1,
+              boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)",
+            }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            whileTap={{ rotate: 0 }}
           >
             <Flame className="w-5 h-5 text-orange-500 fill-orange-500" />
             <span className="font-bold font-handwriting text-black">Creator of LazyFire</span>
