@@ -22,7 +22,7 @@ const timelineData: TimelineItem[] = [
     description:
       "Part of Core team working on AI-powered Media & Data Intelligence Solutions. Designed and built microservices for distributed systems, engineered data pipelines on Google Cloud, and wrote full-stack code for front/back/cloud.",
     location: "Cologne, Germany (Hybrid)",
-    color: "bg-cyan-400",
+    color: "bg-accent",
   },
   {
     id: "ritech",
@@ -42,7 +42,7 @@ const timelineData: TimelineItem[] = [
     description:
       "Developed robust backend systems and APIs. Contributed to open-source projects and mentored junior developers in best practices.",
     location: "Berlin, Germany",
-    color: "bg-yellow-400",
+    color: "bg-yellow",
   },
 ]
 
@@ -113,7 +113,7 @@ export default function JourneySection() {
         >
           <h2 className="text-5xl md:text-6xl font-black text-black mb-4">My Journey</h2>
           <motion.div
-            className="h-3 bg-yellow-400 border-3 border-black"
+            className="h-3 bg-yellow border-3 border-black"
             style={{ width: `${Math.min(scrollProgress * 200, 120)}px` }}
             transition={{ duration: 0.3 }}
           />
@@ -130,7 +130,7 @@ export default function JourneySection() {
             <div className="space-y-8 relative pl-12">
               {/* Vertical yellow line */}
               <motion.div
-                className="absolute left-0 top-0 bottom-0 w-2 bg-yellow-400 border-2 border-black"
+                className="absolute left-0 top-0 bottom-0 w-2 bg-yellow border-2 border-black"
                 style={{ height: `${Math.max(scrollProgress * 100, 0)}%` }}
                 transition={{ duration: 0.3 }}
               />
@@ -200,12 +200,12 @@ export default function JourneySection() {
                   >
                     {/* Marker circle */}
                     <motion.div
-                      className="w-6 h-6 bg-yellow-400 border-3 border-black rounded-full mb-2"
+                      className="w-6 h-6 bg-yellow border-3 border-black rounded-full mb-2"
                       animate={{ scale: [1, 1.1, 1] }}
                       transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                     />
                     {/* Label */}
-                    <motion.div className="bg-yellow-400 border-2 border-black px-2 py-1 text-xs font-black text-black whitespace-nowrap">
+                    <motion.div className="bg-yellow border-2 border-black px-2 py-1 text-xs font-black text-black whitespace-nowrap">
                       {loc.name}
                     </motion.div>
                   </motion.div>
@@ -214,7 +214,7 @@ export default function JourneySection() {
                 {/* Zoom controls */}
                 <div className="absolute top-4 right-4 flex flex-col gap-2">
                   <motion.button
-                    className="w-10 h-10 bg-cyan-400 border-3 border-black font-bold text-lg hover:bg-cyan-500 transition-all"
+                    className="w-10 h-10 bg-accent border-3 border-black font-bold text-lg hover:bg-cyan transition-all"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setZoomLevel((z) => Math.min(z + 0.2, 2))}
@@ -222,7 +222,7 @@ export default function JourneySection() {
                     +
                   </motion.button>
                   <motion.button
-                    className="w-10 h-10 bg-cyan-400 border-3 border-black font-bold text-lg hover:bg-cyan-500 transition-all"
+                    className="w-10 h-10 bg-accent border-3 border-black font-bold text-lg hover:bg-cyan transition-all"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setZoomLevel((z) => Math.max(z - 0.2, 1))}

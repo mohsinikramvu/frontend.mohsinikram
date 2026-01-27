@@ -18,7 +18,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
 
   return (
     <motion.header
-      className="bg-yellow-400 border-b-4 border-black sticky top-0 z-50 pt-2 pb-2"
+      className="bg-yellow border-b-4 border-black sticky top-0 z-50 pt-2 pb-2"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -27,14 +27,17 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
         <div className="flex items-center gap-8">
           <motion.button
             onClick={() => onNavChange?.("home")}
-            className="bg-cyan-400 border-3 border-black px-4 py-2 font-black text-black text-xl cursor-pointer transition-all duration-300"
-            whileHover={{
-              scale: 1.05,
-              rotate: 2,
-              backgroundColor: "#06b6d4",
+            className="bg-cyan border-3 border-black px-4 py-2 font-black text-black text-xl cursor-pointer"
+            style={{
               boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
             }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{
+              rotate: 2,
+              backgroundColor: "#22d3ee",
+              boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)",
+            }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            whileTap={{ rotate: 0 }}
           >
             MI
           </motion.button>
@@ -73,26 +76,32 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
           {/* CTA and Theme Toggle */}
           <div className="flex gap-4">
             <motion.button
-              className="bg-cyan-400 border-3 border-black px-6 py-2 font-bold text-black cursor-pointer transition-all duration-300"
-              whileHover={{
-                scale: 1.05,
-                y: -2,
-                backgroundColor: "#06b6d4",
+              className="bg-cyan border-3 border-black px-6 py-2 font-bold text-black cursor-pointer"
+              style={{
                 boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
               }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{
+                rotate: -1,
+                backgroundColor: "#22d3ee",
+                boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)",
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              whileTap={{ rotate: 0 }}
             >
               Get in Touch!
             </motion.button>
             <motion.button
-              className="bg-cyan-400 border-3 border-black w-12 flex items-center justify-center text-black font-bold cursor-pointer transition-all duration-300"
-              whileHover={{
-                scale: 1.1,
-                rotate: 15,
-                backgroundColor: "#06b6d4",
+              className="bg-cyan border-3 border-black w-12 flex items-center justify-center text-black font-bold cursor-pointer"
+              style={{
                 boxShadow: "3px 3px 0px 0px rgba(0,0,0,1)",
               }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{
+                rotate: 15,
+                backgroundColor: "#22d3ee",
+                boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)",
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              whileTap={{ rotate: 0 }}
             >
               <Moon className="w-5 h-5 fill-current" />
             </motion.button>

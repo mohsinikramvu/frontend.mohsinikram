@@ -102,7 +102,7 @@ export default function AboutSection() {
         <motion.div variants={itemVariants} className="mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-black mb-4">About Me</h2>
           <motion.div
-            className="h-2 bg-cyan-400 border-2 border-black"
+            className="h-2 bg-accent border-2 border-black"
             style={{
               width: `${scrollProgress * 96}px`,
             }}
@@ -146,8 +146,11 @@ export default function AboutSection() {
           ].map((value, i) => (
             <motion.div
               key={value.title}
-              className="border-3 border-black p-6 bg-white hover:bg-yellow-300 transition-all duration-300 cursor-pointer"
-              whileHover={{ scale: 1.05, y: -5, boxShadow: "0 10px 20px rgba(0,0,0,0.15)" }}
+              className="border-3 border-black p-6 bg-yellow-300 transition-all duration-300 cursor-pointer"
+              style={{
+                boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
+              }}
+              whileHover={{ scale: 1.05, y: -5, boxShadow: "0 0 0 rgba(0,0,0,0)", backgroundColor: "#ffffff" }}
               whileTap={{ scale: 0.98 }}
               transition={{ delay: i * 0.1 }}
             >

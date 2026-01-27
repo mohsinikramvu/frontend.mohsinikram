@@ -27,7 +27,9 @@ export default function Resume() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black m-6 shadow-2xs shadow-black border-4 border-black">
+    <div style={{
+      boxShadow: "10px 10px 0px 0px rgba(0,0,0,1)",
+    }} className="min-h-screen bg-white text-black m-6 shadow-2xs shadow-black border-4 border-black">
       <Header activeNav={activeNav} onNavChange={scrollToSection} />
 
       <div id="home">

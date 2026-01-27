@@ -8,14 +8,14 @@ const contactLinks = [
     name: 'LinkedIn',
     icon: Linkedin,
     url: 'https://linkedin.com',
-    color: 'bg-cyan-400',
+    color: 'bg-accent',
     hoverColor: 'hover:bg-cyan-300',
   },
   {
     name: 'GitHub',
     icon: Github,
     url: 'https://github.com',
-    color: 'bg-yellow-400',
+    color: 'bg-yellow',
     hoverColor: 'hover:bg-yellow-300',
   },
   {
@@ -87,7 +87,7 @@ export default function ContactSection() {
           viewport={{ once: true, amount: 0.5 }}
         >
           <motion.div
-            className="inline-block bg-yellow-400 border-4 border-black px-6 py-3 mb-8"
+            className="inline-block bg-yellow border-4 border-black px-6 py-3 mb-8"
             variants={itemVariants}
           >
             <h2 className="text-3xl md:text-4xl font-black text-black">GET IN TOUCH</h2>
@@ -128,7 +128,7 @@ export default function ContactSection() {
               >
                 {/* Post-it Note */}
                 <motion.div
-                  className="absolute -top-4 right-4 w-16 h-16 bg-yellow-400 border-2 border-black"
+                  className="absolute -top-4 right-4 w-16 h-16 bg-yellow border-2 border-black"
                   variants={postItVariants}
                   initial="initial"
                   whileHover="hover"

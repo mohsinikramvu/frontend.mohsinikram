@@ -15,5 +15,7 @@ export default function Home() {
     return () => clearTimeout(timer)
   }, [])
 
-  return <div className="min-h-screen max-w-[1400px] mx-auto relative">{isLoading ? <SplashScreen /> : <Resume />}</div>
+  return <div className="min-h-screen max-w-[1400px] mx-auto relative">
+    {isLoading ? <SplashScreen /> : <Resume />}
+  </div>
 }

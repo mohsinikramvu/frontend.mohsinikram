@@ -41,7 +41,7 @@ export default function HeroSection() {
       animate="visible"
     >
       <AnimatedIcon position="top-right" delay={0.2}>
-        <div className="bg-yellow-primary border-3 border-black p-3 rounded-lg hover:bg-yellow-400 transition-all duration-300 cursor-pointer">
+        <div className="bg-yellow-primary border-3 border-black p-3 rounded-lg hover:bg-yellow transition-all duration-300 cursor-pointer">
           <code className="text-lg font-black text-black">&gt;_</code>
         </div>
       </AnimatedIcon>
@@ -52,7 +52,7 @@ export default function HeroSection() {
           <motion.div variants={itemVariants} className="space-y-8">
             {/* Greeting */}
             <motion.div variants={itemVariants} className="flex items-center gap-3">
-              <span className="text-4xl md:text-5xl font-bold text-cyan-400">Hi there!</span>
+              <span className="text-4xl md:text-5xl font-bold text-cyan">Hi there!</span>
               <motion.span
                 animate={{ rotate: [0, 20, -20, 0] }}
                 transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, repeatDelay: 2 }}
@@ -79,16 +79,17 @@ export default function HeroSection() {
               {socialIcons.map((social, i) => (
                 <motion.button
                   key={social.icon}
-                  className="border-3 border-black p-3 bg-white hover:bg-white text-black transition-all duration-300 cursor-pointer"
-                  whileHover={{
-                    scale: 1.1,
-                    y: -4,
-                    boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)"
-                  }}
-                  whileTap={{ scale: 0.9 }}
+                  className="border-3 border-black p-3 bg-white text-black cursor-pointer"
                   style={{
                     animationDelay: `${i * 0.1}s`,
+                    boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
                   }}
+                  whileHover={{
+                    rotate: 3,
+                    boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)"
+                  }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  whileTap={{ rotate: 0 }}
                 >
                   <span className="text-2xl font-black">
                     {social.icon === "github" ? "⚙️" : social.icon === "linkedin" ? "💼" : "🐦"}
@@ -98,30 +99,35 @@ export default function HeroSection() {
             </motion.div>
 
             {/* CTA Buttons */}
-            {/* CTA Buttons */}
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-4">
               <motion.button
-                className="bg-cyan-400 border-3 border-black px-8 py-3 font-bold text-black cursor-pointer transition-all duration-300"
-                whileHover={{
-                  scale: 1.05,
-                  y: -2,
-                  backgroundColor: "#06b6d4",
+                className="bg-cyan border-3 border-black px-8 py-3 font-bold text-black cursor-pointer"
+                style={{
                   boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
                 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{
+                  rotate: -1,
+                  backgroundColor: "#22d3ee",
+                  boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)",
+                }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                whileTap={{ rotate: 0 }}
               >
                 Get in Touch!
               </motion.button>
 
               <motion.button
-                className="border-3 border-black px-8 py-3 font-bold text-black cursor-pointer hover:bg-yellow-primary transition-all duration-300"
-                whileHover={{
-                  scale: 1.05,
-                  y: -2,
-                  backgroundColor: "#fcd34d",
+                className="border-3 border-black px-8 py-3 font-bold text-black cursor-pointer bg-yellow"
+                style={{
                   boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
                 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{
+                  rotate: 1,
+                  backgroundColor: "#ffffff",
+                  boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)",
+                }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                whileTap={{ rotate: 0 }}
               >
                 ☕ Buy me a coffee
               </motion.button>
@@ -129,7 +135,7 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Right Content - Avatar and Icons */}
-          <motion.div variants={itemVariants} className="relative h-96 md:h-[500px] flex items-center justify-center">
+          <motion.div variants={itemVariants} className="relative h-96 md:h-[400px] flex items-center justify-center">
             {/* Avatar Card */}
             <motion.div
               className="relative w-full max-w-[400px]"
@@ -142,7 +148,22 @@ export default function HeroSection() {
                 ease: "easeInOut",
               }}
             >
-              <div className="bg-cyan-400 border-4 border-black rounded-xl aspect-square overflow-hidden hover:bg-cyan-300 transition-all duration-300 cursor-pointer relative">
+              <motion.div
+                className="bg-background-secondary max-h-[370px] border-4 aspect-square overflow-hidden cursor-pointer relative"
+                initial={{ rotate: -4 }}
+                whileHover={{
+                  rotate: 0,
+                  scale: 1,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.68, -0.55, 0.265, 1.55]
+                }}
+                style={{
+                  transformOrigin: "top right",
+                  boxShadow: "8px 8px 0 var(--border)"
+                }}
+              >
                 <Image
                   src="/hero-image.png"
                   alt="Mohsin Ikram"
@@ -150,12 +171,12 @@ export default function HeroSection() {
                   className="object-contain scale-150 translate-y-16"
                   priority
                 />
-                {/* <div className="absolute inset-0 bg-cyan-400/30 mix-blend-multiply" /> */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
-              </div>
+                {/* <div className="absolute inset-0 bg-primary/30 mix-blend-multiply" /> */}
+                {/* <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" /> */}
+              </motion.div>
               {/* Floating decorator icons around avatar */}
               <motion.div
-                className="absolute top-0 -left-8 bg-cyan-400 border-4 border-black p-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
+                className="absolute top-0 -left-8 bg-primary border-4 border-black p-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
                 animate={{
                   x: [0, -25, 0],
                   rotate: [0, 5, -15, 0],
@@ -165,12 +186,12 @@ export default function HeroSection() {
                   repeat: Number.POSITIVE_INFINITY,
                   ease: "easeInOut",
                 }}
-                whileHover={{ scale: 1.5, boxShadow: "0 8px 16px rgba(0,0,0,0.2)" }}
+                whileHover={{ scale: 1.12, boxShadow: "0 8px 16px rgba(0,0,0,0.2)" }}
               >
                 <code className="text-2xl font-black text-black">&lt;/&gt;</code>
               </motion.div>
               <motion.div
-                className="absolute -bottom-2 -left-10 bg-cyan-400 border-4 border-black p-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
+                className="absolute -bottom-2 -left-10 bg-primary border-4 border-black p-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
                 animate={{
                   rotate: [0, 360],
                 }}
@@ -187,7 +208,7 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.div
-              className="absolute -bottom-4 -right-8 bg-yellow-primary border-3 border-black p-2 rounded-lg cursor-pointer hover:bg-yellow-400 transition-all duration-300"
+              className="absolute bottom-18 right-14 z-10 bg-yellow border-3 border-black p-2 rounded-lg cursor-pointer hover:bg-yellow transition-all duration-300"
               animate={{
                 y: [0, 15, 0],
                 rotate: [0, -5, 5, 0],
@@ -200,11 +221,11 @@ export default function HeroSection() {
               }}
               whileHover={{ scale: 1.15, boxShadow: "0 8px 16px rgba(0,0,0,0.2)" }}
             >
-              <code className="text-2xl font-black text-black">&gt;_</code>
+              <code className="text-4xl font-black text-black">&gt;_</code>
             </motion.div>
 
             <motion.div
-              className="absolute bottom-0 right-10 bg-cyan-400 border-3 border-black px-4 py-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
+              className="absolute bottom-0 right-10 bg-primary border-3 border-black px-4 py-2 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
               animate={{
                 x: [0, 10, 0],
               }}
@@ -228,16 +249,17 @@ export default function HeroSection() {
             {skills.map((skill, i) => (
               <motion.div
                 key={skill}
-                className="border-3 border-black px-4 py-2 font-bold text-black bg-white hover:bg-white transition-all duration-300 cursor-pointer"
-                whileHover={{
-                  scale: 1.05,
-                  y: -4,
+                className="border-3 border-black px-4 py-2 font-bold text-black bg-white hover:bg-yellow cursor-pointer"
+                style={{
                   boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
                 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{
-                  delay: i * 0.05,
+                whileHover={{
+                  rotate: -1,
+                  backgroundColor: "#ffd93d",
+                  boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)",
                 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                whileTap={{ rotate: 0 }}
               >
                 {skill}
               </motion.div>

@@ -14,13 +14,13 @@ const skillsData: SkillCard[] = [
   {
     category: "FRONTEND",
     icon: "⚛️",
-    color: "bg-cyan-400",
+    color: "bg-accent",
     skills: ["React.js", "Redux", "MobX", "Angular", "Bootstrap", "Material-UI", "React Native", "Ionic"],
   },
   {
     category: "LANGUAGES",
     icon: "</> ",
-    color: "bg-yellow-400",
+    color: "bg-yellow",
     skills: ["JavaScript", "TypeScript", "Python", "Java", "Kotlin", "SQL", "HTML", "CSS"],
   },
   {
@@ -38,7 +38,7 @@ const skillsData: SkillCard[] = [
   {
     category: "DATABASES",
     icon: "💾",
-    color: "bg-cyan-400",
+    color: "bg-accent",
     skills: ["MongoDB", "Firestore", "RethinkDB", "Redis", "PostgreSQL", "SQL Server"],
   },
   {
@@ -110,7 +110,7 @@ export default function SkillsSection() {
             viewport={{ once: false, amount: 0.8 }}
             className="mb-16"
           >
-            <div className="bg-yellow-400 border-4 border-black inline-block px-6 py-3 mb-8">
+            <div className="bg-yellow border-4 border-black inline-block px-6 py-3 mb-8">
               <h2 className="text-3xl md:text-4xl font-black text-black">SKILLS</h2>
             </div>
           </motion.div>
@@ -145,7 +145,11 @@ export default function SkillsSection() {
                       key={skill}
                       custom={idx}
                       variants={badgeVariants}
-                      className="border-3 border-black px-3 py-2 text-sm font-bold text-black bg-white hover:bg-yellow-400 transition-colors duration-300"
+                      className="border-3 border-black px-3 py-2 text-sm font-bold text-black bg-yellow transition-colors duration-300"
+                      whileHover={{
+                        scale: 1.05,
+                        backgroundColor: "#ffffff",
+                      }}
                     >
                       {skill}
                     </motion.div>
@@ -164,7 +168,7 @@ export default function SkillsSection() {
             className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20"
           >
             {/* Architecture */}
-            <motion.div variants={cardVariants} className="bg-yellow-400 border-4 border-black p-8">
+            <motion.div variants={cardVariants} className="bg-yellow border-4 border-black p-8">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b-4 border-black">
                 <span className="text-2xl">🏗️</span>
                 <h3 className="text-2xl font-black text-black">ARCHITECTURE</h3>
@@ -175,8 +179,8 @@ export default function SkillsSection() {
                     key={skill}
                     custom={idx}
                     variants={badgeVariants}
-                    whileHover={{ scale: 1.08, backgroundColor: "#000" }}
-                    className="border-3 border-black px-4 py-2 text-sm font-black text-black bg-white hover:text-white transition-colors duration-300"
+                    whileHover={{ scale: 1.08, backgroundColor: "#ffffff", color: "#000" }}
+                    className="border-3 border-black px-4 py-2 text-sm font-black text-white bg-black transition-colors duration-300"
                   >
                     {skill}
                   </motion.div>
@@ -185,7 +189,7 @@ export default function SkillsSection() {
             </motion.div>
 
             {/* Methodologies */}
-            <motion.div variants={cardVariants} className="bg-yellow-400 border-4 border-black p-8">
+            <motion.div variants={cardVariants} className="bg-yellow border-4 border-black p-8">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b-4 border-black">
                 <span className="text-2xl">👥</span>
                 <h3 className="text-2xl font-black text-black">METHODOLOGIES</h3>
@@ -196,8 +200,8 @@ export default function SkillsSection() {
                     key={skill}
                     custom={idx}
                     variants={badgeVariants}
-                    whileHover={{ scale: 1.08, backgroundColor: "#000" }}
-                    className="border-3 border-black px-4 py-2 text-sm font-black text-black bg-white hover:text-white transition-colors duration-300"
+                    whileHover={{ scale: 1.08, backgroundColor: "#ffffff", color: "#000" }}
+                    className="border-3 border-black px-4 py-2 text-sm font-black text-white bg-black transition-colors duration-300"
                   >
                     {skill}
                   </motion.div>
@@ -232,7 +236,7 @@ export default function SkillsSection() {
               viewport={{ once: false, amount: 0.3 }}
               className="border-4 border-black p-8 bg-white"
             >
-              <div className="bg-yellow-400 border-4 border-black inline-block px-6 py-3 mb-8">
+              <div className="bg-yellow border-4 border-black inline-block px-6 py-3 mb-8">
                 <h3 className="text-2xl font-black text-black">EDUCATION</h3>
               </div>
 
@@ -246,7 +250,7 @@ export default function SkillsSection() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.3 }}
                     viewport={{ once: false, amount: 0.3 }}
-                    className="bg-cyan-400 border-3 border-black inline-block px-4 py-2 mb-6 font-black"
+                    className="bg-accent border-3 border-black inline-block px-4 py-2 mb-6 font-black"
                   >
                     2013 - 2016
                   </motion.div>
@@ -264,7 +268,7 @@ export default function SkillsSection() {
               viewport={{ once: false, amount: 0.3 }}
               className="border-4 border-black p-8 bg-white space-y-6"
             >
-              <div className="bg-yellow-400 border-4 border-black inline-block px-6 py-3">
+              <div className="bg-yellow border-4 border-black inline-block px-6 py-3">
                 <h3 className="text-2xl font-black text-black">LANGUAGES</h3>
               </div>
 
@@ -287,7 +291,7 @@ export default function SkillsSection() {
                     {[...Array(3)].map((_, i) => (
                       <motion.div
                         key={i}
-                        className={`w-5 h-5 border-2 border-black ${i < lang.level ? "bg-yellow-400" : "bg-white"}`}
+                        className={`w-5 h-5 border-2 border-black ${i < lang.level ? "bg-yellow" : "bg-white"}`}
                         animate={i < lang.level ? { scale: [1, 1.2, 1] } : {}}
                         transition={{
                           duration: 1.5,

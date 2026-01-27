@@ -44,7 +44,7 @@ export default function Footer({ name, title, onNavChange }: FooterProps) {
               <motion.button
                 key={item}
                 onClick={() => onNavChange(item.toLowerCase())}
-                className="text-sm md:text-base font-bold text-black hover:text-cyan-500 transition-colors duration-300 cursor-pointer"
+                className="text-sm md:text-base font-bold text-black hover:text-cyan transition-colors duration-300 cursor-pointer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -55,8 +55,11 @@ export default function Footer({ name, title, onNavChange }: FooterProps) {
 
           {/* Right Section - Terminal Button */}
           <motion.button
-            className="bg-cyan-400 border-3 border-black px-4 py-2 md:px-6 md:py-3 font-bold text-black flex items-center gap-2 hover:bg-cyan-300 transition-all duration-300"
-            whileHover={{ scale: 1.05, boxShadow: '0 8px 0 -2px rgba(0,0,0,0.3)' }}
+            className="bg-cyan border-3 border-black px-4 py-2 md:px-6 md:py-3 font-bold text-black flex items-center gap-2 transition-all duration-300"
+            style={{
+              boxShadow: '0 8px 0 -2px rgba(0,0,0,0.3)',
+            }}
+            whileHover={{ scale: 1.05, boxShadow: '0 0 0 0 rgba(0,0,0,0)', backgroundColor: '#22d3ee' }}
             whileTap={{ scale: 0.95 }}
           >
             <Terminal size={20} />
