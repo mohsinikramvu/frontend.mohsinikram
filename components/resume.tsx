@@ -8,6 +8,7 @@ import JourneySection from "./journey-section"
 import SkillsSection from "./skills-section"
 import ContactSection from "./contact-section"
 import Footer from "./footer"
+import ScrollProgress from "./scroll-progress"
 import { useState } from "react"
 
 const portfolioOwner = {
@@ -29,7 +30,8 @@ export default function Resume() {
   return (
     <div style={{
       boxShadow: "10px 10px 0px 0px rgba(0,0,0,1)",
-    }} className="min-h-screen bg-white text-black m-6 shadow-2xs shadow-black border-4 border-black">
+    }} className="min-h-screen bg-white text-black max-w-[1400px] m-6 mx-auto shadow-2xs shadow-black border-4 border-black">
+      <ScrollProgress />
       <Header activeNav={activeNav} onNavChange={scrollToSection} />
 
       <div id="home">

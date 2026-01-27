@@ -113,7 +113,7 @@ export default function AboutSection() {
         <motion.div variants={itemVariants} className="space-y-8">
           <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
             I'm a <HighlightedText text="Senior Software Engineer" highlight="Senior Software Engineer" /> based in{" "}
-            <HighlightedText text="Munich, Germany" highlight="Munich, Germany" />, with a passion for building{" "}
+            <HighlightedText text="Lahore, Pakistan" highlight="Lahore, Pakistan" />, with a passion for building{" "}
             <HighlightedText text="scalable and elegant solutions" highlight="scalable and elegant solutions" /> to
             complex problems.
           </p>

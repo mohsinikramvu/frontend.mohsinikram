@@ -110,6 +110,12 @@
   }
 
   body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: #d0d0d0;
+    color: var(--text);
+    min-height: 100vh;
+    margin: 0;
+    overflow-y: auto;
     @apply bg-background text-foreground;
   }
 }

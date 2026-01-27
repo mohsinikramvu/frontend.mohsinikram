@@ -1,7 +1,8 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { Flame, Moon } from "lucide-react"
+import { useState } from "react"
 
 interface HeaderProps {
   activeNav?: string
@@ -9,6 +10,18 @@ interface HeaderProps {
 }
 
 export default function Header({ activeNav = "home", onNavChange }: HeaderProps) {
+  const [hidden, setHidden] = useState(false)
+  const { scrollY } = useScroll()
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0
+    if (latest > previous && latest > 150) {
+      setHidden(true)
+    } else {
+      setHidden(false)
+    }
+  })
+
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
@@ -18,10 +31,13 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
 
   return (
     <motion.header
-      className="bg-yellow border-b-4 border-black sticky top-0 z-50 pt-2 pb-2"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      className="bg-yellow border-b-4 border-black sticky top-0 z-50 pt-4 pb-2"
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" },
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
     >
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-8">

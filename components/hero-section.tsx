@@ -117,13 +117,13 @@ export default function HeroSection() {
               </motion.button>
 
               <motion.button
-                className="border-3 border-black px-8 py-3 font-bold text-black cursor-pointer bg-yellow"
+                className="border-3 border-black px-8 py-3 font-bold text-black cursor-pointer bg-white"
                 style={{
                   boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
                 }}
                 whileHover={{
                   rotate: 1,
-                  backgroundColor: "#ffffff",
+                  backgroundColor: "#ffd93d",
                   boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)",
                 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
