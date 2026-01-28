@@ -81,7 +81,7 @@ export default function AboutSection() {
   return (
     <motion.section
       ref={sectionRef}
-      className="min-h-screen bg-white border-t-4 border-black pt-20 pb-20 px-6 md:px-12"
+      className="min-h-screen bg-white pt-20 pb-20 px-6 md:px-12"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"

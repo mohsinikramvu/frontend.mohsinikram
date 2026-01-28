@@ -80,7 +80,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
           </nav>
 
           {/* LazyFire Badge */}
-          <motion.div
+          {/* <motion.div
             className="hidden lg:flex items-center gap-2 bg-white border-3 border-black px-4 py-2 cursor-pointer"
             style={{
               boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
@@ -95,7 +95,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
           >
             <Flame className="w-5 h-5 text-orange-500 fill-orange-500" />
             <span className="font-bold font-handwriting text-black">Creator of LazyFire</span>
-          </motion.div>
+          </motion.div> */}
 
           {/* CTA and Theme Toggle */}
           <div className="flex gap-4">

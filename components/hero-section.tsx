@@ -37,7 +37,7 @@ export default function HeroSection() {
 
   return (
     <motion.section
-      className="bg-white pt-20 pb-12 px-6 md:px-12 relative border-b-4 border-black"
+      className="bg-white pt-20 pb-12 px-6 md:px-12 relative"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -93,7 +93,7 @@ export default function HeroSection() {
                     rotate: 0,
                     boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)"
                   }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
                   whileTap={{ rotate: 0 }}
                 >
                   <span className="text-2xl font-black">
@@ -250,11 +250,11 @@ export default function HeroSection() {
         </div>
 
         {/* Skills Section */}
-        <motion.div variants={itemVariants} className="flex flex-wrap gap-6 justify-center md:justify-center py-16">
+        <motion.div variants={itemVariants} className="flex flex-wrap gap-6 justify-center md:justify-center pt-16 pb-8">
           {skills.map((skill, i) => (
             <motion.div
               key={skill}
-              className="border-3 border-black px-4 py-2 rounded font-bold text-black bg-white cursor-pointer"
+              className="border-2 border-black px-4 py-2 rounded font-bold text-black bg-white cursor-pointer"
               style={{
                 boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
               }}
@@ -263,7 +263,7 @@ export default function HeroSection() {
                 backgroundColor: "#ffd93d",
                 boxShadow: "0px 0px 0px 0px rgba(0,0,0,1)",
               }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
               whileTap={{ rotate: 0 }}
             >
               {skill}

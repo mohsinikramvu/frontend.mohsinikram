@@ -116,7 +116,9 @@
     min-height: 100vh;
     margin: 0;
     overflow-y: auto;
-    @apply bg-background text-foreground;
+    line-height: 1.6;
+    padding: 20px;
+    @apply text-foreground;
   }
 }
 
@@ -126,7 +128,37 @@
   position: sticky;
   top: 15px;
   background: var(--yellow);
-  border: 4px solid var(--border);
+  border: 3px solid var(--border);
   margin: 20px 15px 0px;
   transition: transform 0.3s;
+}
+
+.paper-tear-top {
+  margin-top: -1px;
+  /* margin-bottom: -21px; */
+  position: relative;
+  z-index: 1;
+}
+
+.paper-tear {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.paper-tear-bottom {
+  /* margin-top: -30px; */
+  margin-bottom: -1px;
+  transition: margin-top 0.1s ease-out;
+  position: relative;
+  z-index: 3;
+  perspective: 1000px;
+}
+
+.page-gap {
+  width: 100%;
+  /* height: 300px; */
+  background: #d0d0d0;
+  position: relative;
+  transition: height 0.1s ease-out;
 }
