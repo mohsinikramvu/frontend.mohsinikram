@@ -1,73 +1,60 @@
 "use client"
 
-import { motion, Variants } from "framer-motion"
-import { useRef, useState, useEffect } from "react"
+import { motion, Variants, useScroll, useTransform } from "framer-motion"
+import { useRef } from "react"
 
 export default function AboutSection() {
-  const [scrollProgress, setScrollProgress] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return
+  // Scroll progress relative to this section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  })
 
-      const element = sectionRef.current
-      const elementTop = element.getBoundingClientRect().top
-      const elementHeight = element.clientHeight
-      const windowHeight = window.innerHeight
+  /* ---------------- Highlighted Text Component ---------------- */
+  const HighlightedText = ({
+    text,
+    highlight,
+    start,
+    end,
+  }: {
+    text: string
+    highlight: string
+    start: number
+    end: number
+  }) => {
+    const bgOpacity = useTransform(scrollYProgress, [start, end], [0, 1])
+    const scale = useTransform(scrollYProgress, [start, end], [1, 1])
+    const border = useTransform(scrollYProgress, [start, end], [0, 3])
 
-      // Calculate how much of the element is in view (0 to 1)
-      const progress = Math.max(0, Math.min(1, (windowHeight - elementTop) / (windowHeight + elementHeight)))
-      setScrollProgress(progress)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const HighlightedText = ({ text, highlight }: { text: string; highlight: string }) => {
     const parts = text.split(new RegExp(`(${highlight})`, "gi"))
-    const totalHighlights = parts.filter((p) => p.toLowerCase() === highlight.toLowerCase()).length
-
+    console.log(bgOpacity.get())
     return (
       <>
-        {parts.map((part, i) => {
-          const isHighlighted = part.toLowerCase() === highlight.toLowerCase()
-          const highlightIndex = parts.slice(0, i).filter((p) => p.toLowerCase() === highlight.toLowerCase()).length
-          const startProgress = highlightIndex / (totalHighlights || 1)
-          const endProgress = (highlightIndex + 1) / (totalHighlights || 1)
-
-          // Calculate animation progress for this specific highlight (0 to 1)
-          const animationProgress = Math.max(
-            0,
-            Math.min(1, (scrollProgress - startProgress) / (endProgress - startProgress)),
-          )
-
-          return (
+        {parts.map((part, i) =>
+          part.toLowerCase() === highlight.toLowerCase() ? (
             <motion.span
               key={i}
-              className={isHighlighted ? "font-bold relative" : ""}
-              style={
-                isHighlighted
-                  ? {
-                    backgroundColor: `rgba(34, 211, 238, ${animationProgress})`,
-                    borderBottomWidth: `${animationProgress * 3}px`,
-                    borderBottomColor: "#000",
-                    scale: 1 + animationProgress * 0.1,
-                  }
-                  : {}
-              }
-              transition={{ duration: 0.3 }}
+              className="font-bold px-2 text-black inline-block"
+              style={{
+                backgroundColor: `rgba(34,211,238,${bgOpacity.get()})`,
+                scale,
+                borderBottomWidth: border,
+                borderBottomColor: "#000",
+              }}
             >
-              {isHighlighted && <span className="px-2 text-black">{part}</span>}
-              {!isHighlighted && part}
+              {part}
             </motion.span>
+          ) : (
+            part
           )
-        })}
+        )}
       </>
     )
   }
 
+  /* ---------------- Framer Variants ---------------- */
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -88,6 +75,9 @@ export default function AboutSection() {
     },
   }
 
+  /* ---------------- Progress Bar ---------------- */
+  const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "96px"])
+
   return (
     <motion.section
       ref={sectionRef}
@@ -100,37 +90,86 @@ export default function AboutSection() {
       <div className="max-w-4xl mx-auto">
         {/* Section Title */}
         <motion.div variants={itemVariants} className="mb-16">
-          <h2 className="text-5xl md:text-6xl font-black text-black mb-4">About Me</h2>
+          <h2 className="text-5xl md:text-6xl font-black text-black mb-4">
+            About Me
+          </h2>
           <motion.div
             className="h-2 bg-accent border-2 border-black"
-            style={{
-              width: `${scrollProgress * 96}px`,
-            }}
+            style={{ width: lineWidth }}
           />
         </motion.div>
 
         {/* Main Content */}
         <motion.div variants={itemVariants} className="space-y-8">
           <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
-            I'm a <HighlightedText text="Senior Software Engineer" highlight="Senior Software Engineer" /> based in{" "}
-            <HighlightedText text="Lahore, Pakistan" highlight="Lahore, Pakistan" />, with a passion for building{" "}
-            <HighlightedText text="scalable and elegant solutions" highlight="scalable and elegant solutions" /> to
-            complex problems.
+            I'm a{" "}
+            <HighlightedText
+              text="Senior Software Engineer"
+              highlight="Senior Software Engineer"
+              start={0.1}
+              end={0.25}
+            />{" "}
+            based in{" "}
+            <HighlightedText
+              text="Lahore, Pakistan"
+              highlight="Lahore, Pakistan"
+              start={0.25}
+              end={0.4}
+            />
+            , with a passion for building{" "}
+            <HighlightedText
+              text="scalable and elegant solutions"
+              highlight="scalable and elegant solutions"
+              start={0.4}
+              end={0.55}
+            />{" "}
+            to complex problems.
           </p>
 
           <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
-            My expertise spans <HighlightedText text="distributed systems" highlight="distributed systems" />,{" "}
-            <HighlightedText text="data pipelines" highlight="data pipelines" />, and{" "}
-            <HighlightedText text="cloud technologies" highlight="cloud technologies" />. I thrive in environments where
-            I can leverage <HighlightedText text="microservices architecture" highlight="microservices architecture" />{" "}
-            and <HighlightedText text="full-stack development" highlight="full-stack development" /> to create impactful
-            products.
+            My expertise spans{" "}
+            <HighlightedText
+              text="distributed systems"
+              highlight="distributed systems"
+              start={0.55}
+              end={0.65}
+            />
+            ,{" "}
+            <HighlightedText
+              text="data pipelines"
+              highlight="data pipelines"
+              start={0.65}
+              end={0.75}
+            />
+            , and{" "}
+            <HighlightedText
+              text="cloud technologies"
+              highlight="cloud technologies"
+              start={0.75}
+              end={0.85}
+            />
+            . I thrive in environments where I can leverage{" "}
+            <HighlightedText
+              text="microservices architecture"
+              highlight="microservices architecture"
+              start={0.85}
+              end={0.95}
+            />{" "}
+            and{" "}
+            <HighlightedText
+              text="full-stack development"
+              highlight="full-stack development"
+              start={0.95}
+              end={1}
+            />{" "}
+            to create impactful products.
           </p>
 
           <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
-            When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or
-            enjoying a good espresso. I'm always eager to collaborate with like-minded developers and tackle new
-            challenges.
+            When I'm not coding, you can find me exploring new technologies,
+            contributing to open-source projects, or enjoying a good espresso.
+            I'm always eager to collaborate with like-minded developers and
+            tackle new challenges.
           </p>
         </motion.div>
 
@@ -146,16 +185,23 @@ export default function AboutSection() {
           ].map((value, i) => (
             <motion.div
               key={value.title}
-              className="border-3 border-black p-6 bg-yellow-300 transition-all duration-300 cursor-pointer"
-              style={{
-                boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
+              className="border-3 border-black p-6 bg-yellow-300 cursor-pointer"
+              style={{ boxShadow: "0 10px 20px rgba(0,0,0,0.15)" }}
+              whileHover={{
+                scale: 1.05,
+                y: -5,
+                boxShadow: "0 0 0 rgba(0,0,0,0)",
+                backgroundColor: "#ffffff",
               }}
-              whileHover={{ scale: 1.05, y: -5, boxShadow: "0 0 0 rgba(0,0,0,0)", backgroundColor: "#ffffff" }}
               whileTap={{ scale: 0.98 }}
               transition={{ delay: i * 0.1 }}
             >
-              <h3 className="text-xl font-black text-black mb-2">{value.title}</h3>
-              <p className="text-gray-700 text-sm leading-relaxed">{value.desc}</p>
+              <h3 className="text-xl font-black text-black mb-2">
+                {value.title}
+              </h3>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                {value.desc}
+              </p>
             </motion.div>
           ))}
         </motion.div>
