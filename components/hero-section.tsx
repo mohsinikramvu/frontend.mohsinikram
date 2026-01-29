@@ -37,7 +37,7 @@ export default function HeroSection() {
 
   return (
     <motion.section
-      className="bg-white pt-20 pb-12 px-6 md:px-12 relative"
+      className="pt-20 pb-12 px-6 md:px-12 relative"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -209,6 +209,23 @@ export default function HeroSection() {
               >
                 <FloppyIcon />
               </motion.div>
+              <motion.div
+                style={{
+                  boxShadow: "5px 5px 0 var(--border)"
+                }}
+                className="absolute -bottom-6 -right-6 bg-accent border-3 border-black px-7 py-3 cursor-pointer hover:bg-cyan-300 transition-all duration-300"
+                animate={{
+                  x: [0, 10, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  delay: 0.4,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
+              >
+                <span className="font-bold text-black text-md">Full-Stack Ninja</span>
+              </motion.div>
             </motion.div>
 
             <motion.div
@@ -230,21 +247,6 @@ export default function HeroSection() {
               <code className="text-4xl font-black text-black">&gt;_</code>
             </motion.div>
 
-            <motion.div
-              className="absolute bottom-0 right-10 bg-primary border-3 border-black px-7 py-3 rounded-lg cursor-pointer hover:bg-cyan-300 transition-all duration-300"
-              animate={{
-                x: [0, 10, 0],
-              }}
-              transition={{
-                duration: 3,
-                delay: 0.4,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-              whileHover={{ scale: 1.1, boxShadow: "0 8px 16px rgba(0,0,0,0.2)" }}
-            >
-              <span className="font-bold text-black text-md">Full-Stack Ninja</span>
-            </motion.div>
 
           </motion.div>
         </div>

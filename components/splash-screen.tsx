@@ -48,7 +48,7 @@ export default function SplashScreen() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#FCD34D] to-[#F8B500]">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-[#FCD34D] to-[#F8B500]">
       {/* Decorative icons */}
       <motion.div className="absolute top-20 left-12 text-4xl" variants={floatingVariants} animate="animate">
         <div className="bg-cyan-300 border-2 border-black p-2 rounded transform -rotate-12">{"</>"}</div>

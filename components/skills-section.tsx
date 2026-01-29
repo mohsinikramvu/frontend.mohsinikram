@@ -2,50 +2,55 @@
 
 import { motion, Variants } from "framer-motion"
 import { useState } from "react"
+import ReactIcon from "./icons/skills/ReactIcon"
+import { Code2 } from "lucide-react"
+import { FaTools } from "react-icons/fa"
+import { SiContentful } from "react-icons/si";
+import { SiOpensearch } from "react-icons/si";
 
 interface SkillCard {
   category: string
-  icon: string
+  icon: React.ReactNode
   color: string
   skills: string[]
+  iconColor?: string
 }
 
 const skillsData: SkillCard[] = [
   {
-    category: "FRONTEND",
-    icon: "⚛️",
+    category: "FRONTEND TECHNOLOGIES",
+    icon: <ReactIcon color="#66d9ef" />,
     color: "bg-accent",
-    skills: ["React.js", "Redux", "MobX", "Angular", "Bootstrap", "Material-UI", "React Native", "Ionic"],
+    iconColor: "#66d9ef",
+    skills: ["React.js", "NextJS", "Angular", "VueJS", "SvelteJS", "GatsbyJS", "HTML", "CSS", "JavaScript", "TypeScript"],
   },
   {
-    category: "LANGUAGES",
-    icon: "</> ",
-    color: "bg-yellow",
-    skills: ["JavaScript", "TypeScript", "Python", "Java", "Kotlin", "SQL", "HTML", "CSS"],
-  },
-  {
-    category: "BACKEND",
-    icon: "🟢",
-    color: "bg-pink-400",
-    skills: ["Node.js", "Express.js", "Hapi", "Firebase", "Cloud Functions", "AWS Lambda", "AWS S3", "NGINX"],
-  },
-  {
-    category: "CLOUD & DEVOPS",
-    icon: "☁️",
-    color: "bg-emerald-300",
-    skills: ["Google Cloud", "AWS", "Azure", "Docker", "Kubernetes", "Terraform"],
-  },
-  {
-    category: "DATABASES",
-    icon: "💾",
+    category: "STATE MANAGEMENT",
+    icon: <Code2 size={40} color="#ffd93d" />,
     color: "bg-accent",
-    skills: ["MongoDB", "Firestore", "RethinkDB", "Redis", "PostgreSQL", "SQL Server"],
+    iconColor: "#ffd93d",
+    skills: ["Redux", "Context API", "MobX", "Zustand", "Recoil", "Jotai", "Pinia"],
   },
   {
-    category: "TOOLS & MORE",
-    icon: "🔧",
+    category: "UI & TESTING LIBRARIES",
+    icon: <SiOpensearch size={35} color="#a8e6cf" />,
+    color: "bg-accent",
+    iconColor: "#a8e6cf",
+    skills: ["Material UI", "Ant Design", "Chakra UI", "Tailwind CSS", "Jest", "Cypress"],
+  },
+  {
+    category: "HEADLESS CMS PLATFORMS",
+    icon: <SiContentful size={35} color="#ff6b9d" />,
+    color: "bg-accent",
+    iconColor: "#ff6b9d",
+    skills: ["Contentful", "Sanity", "Prismic", "Strapi", "Builder.io", "Webflow", "WordPress"],
+  },
+  {
+    category: "WORKFLOW & AGILE TOOLS",
+    icon: <FaTools size={35} color="#58c4dc" />,
     color: "bg-pink-400",
-    skills: ["Git", "Elasticsearch", "GraphQL", "pandas", "Jest", "Cypress"],
+    iconColor: "#58c4dc",
+    skills: ["GitHub", "Jira", "Trello", "GitLab", "Bitbucket", "Asana", "ClickUp", "Scrum", "CI/CD"],
   },
 ]
 
@@ -74,7 +79,7 @@ export default function SkillsSection() {
       transition: { duration: 0.6, ease: "easeOut" },
     },
     hover: {
-      scale: 1.05,
+      scale: 1,
       boxShadow: "0 12px 24px rgba(0,0,0,0.15)",
     },
   }
@@ -87,8 +92,7 @@ export default function SkillsSection() {
       transition: { delay: i * 0.05, duration: 0.4 },
     }),
     hover: {
-      scale: 1.1,
-      backgroundColor: "#FBBF24",
+      scale: 1,
     },
   }
 
@@ -96,7 +100,7 @@ export default function SkillsSection() {
     <>
       {/* Main Skills Grid */}
       <motion.section
-        className="min-h-screen bg-white border-t-4 border-black pt-20 pb-20 px-6 md:px-12"
+        className="pb-12 px-6 md:px-12"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
@@ -108,11 +112,11 @@ export default function SkillsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: false, amount: 0.8 }}
-            className="mb-16"
+            className="mb-12"
           >
-            <div className="bg-yellow border-4 border-black inline-block px-6 py-3 mb-8">
-              <h2 className="text-3xl md:text-4xl font-black text-black">SKILLS</h2>
-            </div>
+            <h2 className="section-title">
+              Skills
+            </h2>
           </motion.div>
 
           {/* Skills Cards Grid */}
@@ -127,14 +131,19 @@ export default function SkillsSection() {
               <motion.div
                 key={card.category}
                 variants={cardVariants}
-                whileHover="hover"
+                transition={{
+                  duration: 0.2,
+                  ease: "easeInOut",
+                }}
                 onMouseEnter={() => setHoveredCard(card.category)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className="border-4 border-black p-8 bg-white cursor-pointer"
+                style={{ boxShadow: "8px 8px 0px rgba(0, 0, 0, 1)" }}
+                className="border-3 border-black p-6 bg-white cursor-pointer relative group"
               >
+                <p style={{ backgroundColor: card.iconColor }} className="absolute left-0 top-0 w-full h-1.5 z-10"></p>
                 {/* Header with icon and title */}
                 <div className="flex items-center gap-3 mb-6 pb-4 border-b-3 border-black">
-                  <span className="text-3xl">{card.icon}</span>
+                  <span className="group-hover:scale-125 transition-all ease-in-out">{card.icon}</span>
                   <h3 className="text-xl font-black text-black">{card.category}</h3>
                 </div>
 
@@ -145,11 +154,18 @@ export default function SkillsSection() {
                       key={skill}
                       custom={idx}
                       variants={badgeVariants}
-                      className="border-3 border-black px-3 py-2 text-sm font-bold text-black bg-yellow transition-colors duration-300"
-                      whileHover={{
-                        scale: 1.05,
-                        backgroundColor: "#ffffff",
+                      style={{
+                        boxShadow: "3px 3px 0px rgba(0,0,0,1)",
                       }}
+                      whileHover={{
+                        boxShadow: "0px 0px 0px rgba(0,0,0,1)",
+                        backgroundColor: card.iconColor,
+                      }}
+                      transition={{
+                        duration: 0.2,
+                        ease: "easeInOut",
+                      }}
+                      className="border-2 border-black px-3 py-2 text-sm font-bold text-black"
                     >
                       {skill}
                     </motion.div>
@@ -157,57 +173,6 @@ export default function SkillsSection() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
-
-          {/* Architecture & Methodologies Row */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={containerVariants}
-            viewport={{ once: false, amount: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20"
-          >
-            {/* Architecture */}
-            <motion.div variants={cardVariants} className="bg-yellow border-4 border-black p-8">
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b-4 border-black">
-                <span className="text-2xl">🏗️</span>
-                <h3 className="text-2xl font-black text-black">ARCHITECTURE</h3>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {architectureSkills.map((skill, idx) => (
-                  <motion.div
-                    key={skill}
-                    custom={idx}
-                    variants={badgeVariants}
-                    whileHover={{ scale: 1.08, backgroundColor: "#ffffff", color: "#000" }}
-                    className="border-3 border-black px-4 py-2 text-sm font-black text-white bg-black transition-colors duration-300"
-                  >
-                    {skill}
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Methodologies */}
-            <motion.div variants={cardVariants} className="bg-yellow border-4 border-black p-8">
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b-4 border-black">
-                <span className="text-2xl">👥</span>
-                <h3 className="text-2xl font-black text-black">METHODOLOGIES</h3>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {methodologySkills.map((skill, idx) => (
-                  <motion.div
-                    key={skill}
-                    custom={idx}
-                    variants={badgeVariants}
-                    whileHover={{ scale: 1.08, backgroundColor: "#ffffff", color: "#000" }}
-                    className="border-3 border-black px-4 py-2 text-sm font-black text-white bg-black transition-colors duration-300"
-                  >
-                    {skill}
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </motion.section>

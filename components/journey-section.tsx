@@ -15,41 +15,51 @@ interface TimelineItem {
 
 const timelineData: TimelineItem[] = [
   {
-    id: "unicepta",
+    id: "orangetreesystems",
     title: "Senior Software Engineer",
-    company: "Unicepta",
-    period: "Jul 2020 - Nov 2025",
+    company: "OrangeTree Systems",
+    period: "Feb 2025 - Present",
     description:
       "Part of Core team working on AI-powered Media & Data Intelligence Solutions. Designed and built microservices for distributed systems, engineered data pipelines on Google Cloud, and wrote full-stack code for front/back/cloud.",
-    location: "Cologne, Germany (Hybrid)",
+    location: "Industrial States, Lahore, Pakistan",
     color: "bg-accent",
   },
   {
-    id: "ritech",
+    id: "m2logics",
     title: "Senior Software Engineer",
-    company: "Ritech Solutions",
-    period: "Jul 2018 - Jul 2020",
+    company: "M2Logics",
+    period: "Oct 2024 - April 2025",
     description:
       "Part of Core team leading tech decisions. Led AppriseMobile CRM for Toyota and Microsoft IOT marketing project deployed across USA, Canada, and Australia.",
-    location: "Tirana, Albania",
+    location: "Eden Center, Lahore, Pakistan",
     color: "bg-pink-400",
   },
   {
-    id: "gutenberg",
+    id: "technologybrainz",
     title: "Software Engineer",
-    company: "Gutenberg",
-    period: "Jan 2016 - Jun 2018",
+    company: "Technology Brainz",
+    period: "Nov 2023 - Sep 2024",
     description:
       "Developed robust backend systems and APIs. Contributed to open-source projects and mentored junior developers in best practices.",
-    location: "Berlin, Germany",
+    location: "Kareem Block, Lahore, Pakistan",
+    color: "bg-yellow",
+  },
+  {
+    id: "brandjaws",
+    title: "Software Engineer",
+    company: "BrandJaws",
+    period: "July 2019 - Nov 2023",
+    description:
+      "Developed robust backend systems and APIs. Contributed to open-source projects and mentored junior developers in best practices.",
+    location: "Model Town, Lahore, Pakistan",
     color: "bg-yellow",
   },
 ]
 
 const locations = [
-  { name: "Germany", x: 62, y: 35 },
-  { name: "France", x: 52, y: 40 },
-  { name: "Albania", x: 58, y: 48 },
+  { name: "M2Logics", x: 62, y: 35 },
+  { name: "Technology Brainz", x: 52, y: 40 },
+  { name: "BrandJaws", x: 58, y: 48 },
 ]
 
 export default function JourneySection() {
@@ -97,26 +107,22 @@ export default function JourneySection() {
   return (
     <motion.section
       ref={sectionRef}
-      className="min-h-screen bg-white border-t-4 border-black pt-20 pb-20 px-6 md:px-12"
+      className="pt-12 pb-20 px-6 md:px-12"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
       viewport={{ once: false, amount: 0.3 }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="">
         <motion.div
+          style={{ boxShadow: "8px 8px 0px rgba(0, 0, 0, 1)" }}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.8 }}
-          className="mb-16"
+          className="mb-16 bg-white p-6 border-3 border-black"
         >
-          <h2 className="text-5xl md:text-6xl font-black text-black mb-4">My Journey</h2>
-          <motion.div
-            className="h-3 bg-yellow border-3 border-black"
-            style={{ width: `${Math.min(scrollProgress * 200, 120)}px` }}
-            transition={{ duration: 0.3 }}
-          />
+          <h2 className="text-4xl font-black text-black text-center">My Journey</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
@@ -147,14 +153,15 @@ export default function JourneySection() {
                   {/* Timeline dot */}
                   <motion.div
                     className="absolute -left-7 top-0 w-5 h-5 bg-black border-3 border-white rounded-full"
-                    whileHover={{ scale: 1.3 }}
+                    whileHover={{ scale: 1 }}
                     transition={{ duration: 0.3 }}
                   />
 
                   {/* Content card */}
                   <motion.div
-                    className="border-3 border-black p-5 bg-white hover:bg-cyan-50 transition-all duration-300 cursor-pointer"
-                    whileHover={{ scale: 1.02, boxShadow: "0 8px 16px rgba(0,0,0,0.15)" }}
+                    style={{ boxShadow: "5px 5px 0px rgba(0, 0, 0, 1)" }}
+                    className="border-3 border-black p-5 bg-white transition-all duration-200 cursor-pointer"
+                    whileHover={{ scale: 1, boxShadow: "0px 0px 0px rgba(0, 0, 0, 1)" }}
                   >
                     <h3 className="text-lg font-black text-black mb-1">{item.title}</h3>
                     <p className="text-sm font-bold text-cyan-600 mb-2">@ {item.company}</p>
@@ -168,13 +175,13 @@ export default function JourneySection() {
           </motion.div>
 
           <motion.div
-            className="lg:col-span-2 h-[400px] lg:sticky lg:top-40 lg:self-start"
+            className="lg:col-span-2 h-1/2 lg:sticky lg:top-40 lg:self-start"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
             viewport={{ once: false, amount: 0.3 }}
           >
-            <div className="relative border-4 border-black bg-gradient-to-br from-amber-100 to-orange-100 overflow-hidden rounded-lg h-full">
+            <div className="relative border-4 border-black bg-linear-to-br from-amber-100 to-orange-100 overflow-hidden rounded-lg h-full">
               {/* Map background */}
               <motion.div
                 className="relative w-full h-full bg-cover bg-center flex items-center justify-center"

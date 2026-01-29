@@ -25,7 +25,7 @@ export default function Resume() {
   });
 
   // Map scroll progress → height
-  const height: any = useTransform(scrollYProgress, [0, 0.4], [100, 15]);
+  const height: any = useTransform(scrollYProgress, [0, 0.5], [150, 15]);
   const [activeNav, setActiveNav] = useState("home")
 
   const scrollToSection = (sectionId: string) => {
@@ -39,7 +39,7 @@ export default function Resume() {
   return (
     <div style={{
       boxShadow: "10px 10px 0px 0px rgba(0,0,0,1)",
-    }} className="min-h-screen bg-white text-black max-w-[1400px] mx-auto shadow-2xs shadow-black border-4 border-black">
+    }} className="min-h-screen page-wrapper">
       <ScrollProgress />
       <Header activeNav={activeNav} onNavChange={scrollToSection} />
 

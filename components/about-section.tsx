@@ -29,7 +29,6 @@ export default function AboutSection() {
     const border = useTransform(scrollYProgress, [start, end], [0, 3])
 
     const parts = text.split(new RegExp(`(${highlight})`, "gi"))
-    console.log(bgOpacity.get())
     return (
       <>
         {parts.map((part, i) =>
@@ -39,9 +38,6 @@ export default function AboutSection() {
               className="font-bold px-2 text-black inline-block"
               style={{
                 backgroundColor: `rgba(34,211,238,${bgOpacity.get()})`,
-                scale,
-                borderBottomWidth: border,
-                borderBottomColor: "#000",
               }}
             >
               {part}
@@ -81,100 +77,42 @@ export default function AboutSection() {
   return (
     <motion.section
       ref={sectionRef}
-      className="min-h-screen bg-white pt-20 pb-20 px-6 md:px-12"
+      className="pt-20 pb-12 px-6 md:px-12"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.2 }}
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="">
         {/* Section Title */}
-        <motion.div variants={itemVariants} className="mb-16">
-          <h2 className="text-5xl md:text-6xl font-black text-black mb-4">
-            About Me
+        <motion.div variants={itemVariants} className="mb-12">
+          <h2 className="section-title">
+            About
           </h2>
           <motion.div
-            className="h-2 bg-accent border-2 border-black"
+            className="h-2 bg-primary border-2 border-black"
             style={{ width: lineWidth }}
           />
         </motion.div>
 
         {/* Main Content */}
-        <motion.div variants={itemVariants} className="space-y-8">
-          <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
-            I'm a{" "}
-            <HighlightedText
-              text="Senior Software Engineer"
-              highlight="Senior Software Engineer"
-              start={0.1}
-              end={0.25}
-            />{" "}
-            based in{" "}
-            <HighlightedText
-              text="Lahore, Pakistan"
-              highlight="Lahore, Pakistan"
-              start={0.25}
-              end={0.4}
-            />
-            , with a passion for building{" "}
-            <HighlightedText
-              text="scalable and elegant solutions"
-              highlight="scalable and elegant solutions"
-              start={0.4}
-              end={0.55}
-            />{" "}
-            to complex problems.
+        <motion.div
+          style={{ boxShadow: "8px 8px 0px rgba(0, 0, 0, 1)" }}
+          variants={itemVariants}
+          className="space-y-6 bg-white px-4 md:px-6 lg:px-8 py-6 md:py-8 border-3 border-black">
+          <p className="text-md text-gray-800 leading-8">
+            Highly experienced and dynamic software engineer with a rich professional background spanning over 11 years. Throughout my career, I've held positions in renowned tech companies across Albania, France, USA, and Germany. My contributions have been pivotal in designing and constructing microservices for distributed systems, implementing data pipelines on Google Cloud, and engaging in full-stack development.
           </p>
-
-          <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
-            My expertise spans{" "}
-            <HighlightedText
-              text="distributed systems"
-              highlight="distributed systems"
-              start={0.55}
-              end={0.65}
-            />
-            ,{" "}
-            <HighlightedText
-              text="data pipelines"
-              highlight="data pipelines"
-              start={0.65}
-              end={0.75}
-            />
-            , and{" "}
-            <HighlightedText
-              text="cloud technologies"
-              highlight="cloud technologies"
-              start={0.75}
-              end={0.85}
-            />
-            . I thrive in environments where I can leverage{" "}
-            <HighlightedText
-              text="microservices architecture"
-              highlight="microservices architecture"
-              start={0.85}
-              end={0.95}
-            />{" "}
-            and{" "}
-            <HighlightedText
-              text="full-stack development"
-              highlight="full-stack development"
-              start={0.95}
-              end={1}
-            />{" "}
-            to create impactful products.
+          <p className="text-md text-gray-800 leading-8">
+            My passion for continuous learning and innovation is evident through my active presence on various platforms. I thrive on staying updated with the latest trends and technologies in the ever-evolving tech landscape.
           </p>
-
-          <p className="text-lg md:text-xl text-gray-800 leading-relaxed">
-            When I'm not coding, you can find me exploring new technologies,
-            contributing to open-source projects, or enjoying a good espresso.
-            I'm always eager to collaborate with like-minded developers and
-            tackle new challenges.
+          <p className="text-md text-gray-800 leading-8">
+            I bring a unique blend of technical expertise, leadership qualities, and a genuine enthusiasm for creating impactful software solutions.
           </p>
         </motion.div>
 
         {/* Key Values */}
-        <motion.div
+        {/* <motion.div
           variants={itemVariants}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-12 border-t-4 border-black"
         >
@@ -204,7 +142,7 @@ export default function AboutSection() {
               </p>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </div>
     </motion.section>
   )
