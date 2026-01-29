@@ -53,12 +53,14 @@ export default function ContactSection() {
     visible: {
       opacity: 1,
       scale: 1,
-      rotateY: 0,
-      transition: { duration: 0.6, type: 'spring', stiffness: 100 },
+      rotate: 5,
+      transition: { duration: 0.2, type: 'spring', stiffness: 100 },
     },
     hover: {
-      scale: 1.05,
-      y: -10,
+      scale: 1,
+      y: 0,
+      rotate: 0,
+      boxShadow: '0px 0px 0px rgba(0,0,0,1)',
       transition: { duration: 0.3 },
     },
   }
@@ -71,7 +73,7 @@ export default function ContactSection() {
   return (
     <motion.section
       id="contact"
-      className="min-h-screen bg-white border-t-4 border-black py-20 px-6 md:px-12"
+      className="pb-8 px-6 md:px-12"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
@@ -87,10 +89,10 @@ export default function ContactSection() {
           viewport={{ once: true, amount: 0.5 }}
         >
           <motion.div
-            className="inline-block bg-yellow border-4 border-black px-6 py-3 mb-8"
+            className=""
             variants={itemVariants}
           >
-            <h2 className="text-3xl md:text-4xl font-black text-black">GET IN TOUCH</h2>
+            <h2 className="section-title">GET IN TOUCH</h2>
           </motion.div>
         </motion.div>
 
@@ -122,13 +124,16 @@ export default function ContactSection() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${link.color} border-4 border-black p-8 relative group cursor-pointer transition-all duration-300`}
+                className={`${link.color} border-4 border-black p-8 relative group cursor-pointer`}
                 variants={cardVariants}
                 whileHover="hover"
+                style={{
+                  boxShadow: '8px 8px 0px rgba(0,0,0,1)',
+                }}
               >
                 {/* Post-it Note */}
                 <motion.div
-                  className="absolute -top-4 right-4 w-16 h-16 bg-yellow border-2 border-black"
+                  className="absolute -top-4 right-4 w-16 h-8 bg-yellow border-2 border-black"
                   variants={postItVariants}
                   initial="initial"
                   whileHover="hover"
@@ -139,9 +144,7 @@ export default function ContactSection() {
                 {/* Content */}
                 <div className="relative z-10">
                   <motion.div
-                    className="mb-6 flex justify-center"
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    transition={{ type: 'spring', stiffness: 200 }}
+                    className="mb-6 flex justify-center group-hover:scale-110 group-hover:rotate-5 transition-all duration-300"
                   >
                     <Icon size={64} className="text-black" strokeWidth={1.5} />
                   </motion.div>
@@ -156,15 +159,6 @@ export default function ContactSection() {
             )
           })}
         </motion.div>
-
-        {/* Divider */}
-        <motion.div
-          className="border-b-4 border-black my-12"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        />
       </div>
     </motion.section>
   )

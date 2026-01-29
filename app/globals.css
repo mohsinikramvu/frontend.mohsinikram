@@ -189,3 +189,24 @@
   border: var(--border-width) solid var(--border);
   box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
 }
+
+.highlight {
+  padding: 0.1rem 0.5rem;
+  font-weight: 600;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0.25rem 0.1rem;
+  position: relative;
+  background: transparent;
+  z-index: 1;
+}
+
+.highlight::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  height: calc(100% + 4px);
+  z-index: -1;
+  border-radius: 3px;
+}

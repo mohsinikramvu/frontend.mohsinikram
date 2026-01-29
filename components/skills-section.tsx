@@ -65,8 +65,8 @@ export default function SkillsSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: 0.2,
+        delayChildren: 0.4,
       },
     },
   }
@@ -106,12 +106,12 @@ export default function SkillsSection() {
         transition={{ duration: 0.7 }}
         viewport={{ once: false, amount: 0.3 }}
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: false, amount: 0.8 }}
+            viewport={{ once: true, amount: 0.3 }}
             className="mb-12"
           >
             <h2 className="section-title">
@@ -124,8 +124,8 @@ export default function SkillsSection() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
+            viewport={{ once: true, amount: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {skillsData.map((card) => (
               <motion.div
@@ -179,7 +179,7 @@ export default function SkillsSection() {
 
       {/* Education & Languages Section */}
       <motion.section
-        className="min-h-screen bg-white border-t-4 border-black pt-20 pb-20 px-6 md:px-12"
+        className="pt-20 pb-20 px-6 md:px-12"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
@@ -193,82 +193,82 @@ export default function SkillsSection() {
             viewport={{ once: false, amount: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
-            {/* Education */}
-            <motion.div
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
-              className="border-4 border-black p-8 bg-white"
-            >
-              <div className="bg-yellow border-4 border-black inline-block px-6 py-3 mb-8">
-                <h3 className="text-2xl font-black text-black">EDUCATION</h3>
-              </div>
-
-              <div className="space-y-6">
-                <div>
+            <div className="">
+              <h2 className="section-title w-full">Education</h2>
+              {/* Education */}
+              <motion.div
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                style={{
+                  boxShadow: "8px 8px 0px rgba(0, 0, 0, 1)",
+                }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="border-3 border-black p-6 bg-white"
+              >
+                <div className="space-y-6">
                   <h4 className="text-2xl font-black text-black mb-2">Bachelor's Degree in Computer Science</h4>
-                  <p className="text-gray-700 font-bold mb-4">University of Tirana</p>
+                  <p className="text-gray-700 font-bold mb-4">Virtual University of Pakistan</p>
 
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.3 }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     className="bg-accent border-3 border-black inline-block px-4 py-2 mb-6 font-black"
                   >
-                    2013 - 2016
+                    2018 - 2023
                   </motion.div>
 
-                  <p className="text-gray-600 font-bold flex items-center gap-2">📍 Tirana, Albania</p>
+                  <p className="text-gray-600 font-bold flex items-center gap-2">📍 Lahore, Pakistan</p>
                 </div>
-              </div>
-            </motion.div>
-
-            {/* Languages */}
-            <motion.div
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
-              className="border-4 border-black p-8 bg-white space-y-6"
-            >
-              <div className="bg-yellow border-4 border-black inline-block px-6 py-3">
-                <h3 className="text-2xl font-black text-black">LANGUAGES</h3>
-              </div>
-
-              {[
-                { language: "Albanian", level: 3 },
-                { language: "English", level: 3 },
-                { language: "German", level: 3 },
-                { language: "Italian", level: 3 },
-              ].map((lang, idx) => (
-                <motion.div
-                  key={lang.language}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  className="border-3 border-black p-4 flex items-center justify-between hover:bg-yellow-50 transition-colors duration-300"
-                >
-                  <span className="font-bold text-lg text-black">{lang.language}</span>
-                  <div className="flex gap-2">
-                    {[...Array(3)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className={`w-5 h-5 border-2 border-black ${i < lang.level ? "bg-yellow" : "bg-white"}`}
-                        animate={i < lang.level ? { scale: [1, 1.2, 1] } : {}}
-                        transition={{
-                          duration: 1.5,
-                          repeat: Number.POSITIVE_INFINITY,
-                          delay: i * 0.1,
-                        }}
-                      />
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+              </motion.div>
+            </div>
+            <div className="">
+              <h2 className="section-title w-full">Languages</h2>
+              {/* Languages */}
+              <motion.div
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                style={{
+                  boxShadow: "8px 8px 0px rgba(0, 0, 0, 1)",
+                }}
+                viewport={{ once: false, amount: 0.3 }}
+                className="border-3 border-black p-6 bg-white space-y-4"
+              >
+                {[
+                  { language: "English", level: 3 },
+                  { language: "Urdu", level: 3 },
+                  { language: "Hindi", level: 3 },
+                ].map((lang, idx) => (
+                  <motion.div
+                    key={lang.language}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    className="border-3 border-black rounded-sm p-4 flex items-center justify-between hover:bg-yellow-50 transition-colors duration-300"
+                  >
+                    <span className="font-bold text-lg text-black">{lang.language}</span>
+                    <div className="flex gap-2">
+                      {[...Array(3)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          className={`w-5 h-5 border-2 border-black ${i < lang.level ? "bg-yellow" : "bg-white"}`}
+                          animate={i < lang.level ? { scale: [1, 1.2, 1] } : {}}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Number.POSITIVE_INFINITY,
+                            delay: i * 0.1,
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </motion.section>

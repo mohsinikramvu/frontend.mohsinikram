@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Terminal } from 'lucide-react'
+import { FaPhone } from 'react-icons/fa'
+import { IoIosMail } from "react-icons/io";
 
 interface FooterProps {
   name: string
@@ -12,7 +13,7 @@ interface FooterProps {
 export default function Footer({ name, title, onNavChange }: FooterProps) {
   return (
     <motion.footer
-      className="border-t-4 border-black py-8 px-6 md:px-12 bg-white"
+      className="py-8 px-6 md:px-12 bg-white"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -45,38 +46,39 @@ export default function Footer({ name, title, onNavChange }: FooterProps) {
                 key={item}
                 onClick={() => onNavChange(item.toLowerCase())}
                 className="text-sm md:text-base font-bold text-black hover:text-cyan transition-colors duration-300 cursor-pointer"
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {item}
               </motion.button>
             ))}
           </motion.div>
-
-          {/* Right Section - Terminal Button */}
-          <motion.button
-            className="bg-cyan border-3 border-black px-4 py-2 md:px-6 md:py-3 font-bold text-black flex items-center gap-2 transition-all duration-300"
-            style={{
-              boxShadow: '0 8px 0 -2px rgba(0,0,0,0.3)',
-            }}
-            whileHover={{ scale: 1.05, boxShadow: '0 0 0 0 rgba(0,0,0,0)', backgroundColor: '#22d3ee' }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Terminal size={20} />
-            <span>Terminal</span>
-          </motion.button>
         </div>
 
         {/* Bottom Section - Copyright */}
-        <motion.div
-          className="border-t-2 border-gray-300 mt-8 pt-6 text-center md:text-left"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-sm text-gray-600">© 2025 {name}</p>
-        </motion.div>
+        <div className="flex items-center justify-between gap-8 border-t-2 border-gray-300 mt-8 pt-6">
+          <motion.div
+            className="text-center md:text-left"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-sm text-gray-600">© 2025 {name}</p>
+          </motion.div>
+          <div className='flex gap-2 items-center'>
+            <IoIosMail size={25} color='#66d9ef' />
+            <motion.a href="mailto:haiderdev1999@gmail.com" whileHover={{ scale: 1, color: "#66d9ef" }} whileTap={{ scale: 0.95 }}>
+              haiderdev1999[@]gmail[.]com
+            </motion.a>
+          </div>
+          <div className='flex gap-2 items-center'>
+            <FaPhone size={20} color='#ffd93d' />
+            <motion.a href="tel:+923027471781" whileHover={{ scale: 1, color: "#ffd93d" }} whileTap={{ scale: 0.95 }}>
+              +92 302 747 1781
+            </motion.a>
+          </div>
+        </div>
       </div>
     </motion.footer>
   )
