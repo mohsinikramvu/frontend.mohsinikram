@@ -5,8 +5,10 @@ import Image from "next/image"
 import FragmentIcon from "./icons/FragmentIcon"
 import FloppyIcon from "./icons/FloppyIcon"
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export default function HeroSection() {
+  const isMobile = useIsMobile();
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -37,7 +39,7 @@ export default function HeroSection() {
 
   return (
     <motion.section
-      className="pt-20 pb-12 px-6 md:px-12 relative"
+      className="pt-12 md:pt-20 pb-12 px-6 md:px-12 relative"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -54,11 +56,11 @@ export default function HeroSection() {
           <motion.div variants={itemVariants} className="space-y-8">
             {/* Greeting */}
             <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
-              <span className="text-4xl font-bold text-cyan">Hi there!</span>
+              <span className="text-2xl md:text-4xl font-bold text-cyan">Hi there!</span>
               <motion.span
                 animate={{ rotate: [0, 20, -20, 0] }}
                 transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, repeatDelay: 2 }}
-                className="text-4xl"
+                className="text-2xl md:text-4xl"
               >
                 👋
               </motion.span>
@@ -66,11 +68,11 @@ export default function HeroSection() {
 
             {/* Main Heading */}
             <motion.div variants={itemVariants}>
-              <h1 className="text-5xl md:text-6xl font-black text-black leading-tight">I'm Mohsin Ikram.</h1>
+              <h1 className="text-3xl md:text-6xl font-black text-black leading-tight">I'm Mohsin Ikram.</h1>
             </motion.div>
 
             {/* Description */}
-            <motion.p variants={itemVariants} className="text-gray-700 text-lg leading-relaxed">
+            <motion.p variants={itemVariants} className="text-gray-700 text-md md:text-lg leading-relaxed">
               Based in Lahore, Pakistan, I'm a Senior Software Engineer. I love to work with distributed systems, data
               pipelines, and cloud technologies. I'm passionate about microservices, full-stack development, and
               building cool stuff.
@@ -154,8 +156,8 @@ export default function HeroSection() {
               }}
             >
               <motion.div
-                className="bg-background-secondary max-h-[370px] border-4 aspect-square overflow-hidden cursor-pointer relative"
-                initial={{ rotate: -4 }}
+                className="bg-background-secondary max-h-[370px] border-2 md:border-4 aspect-square overflow-hidden cursor-pointer relative"
+                initial={{ rotate: isMobile ? 0 : -4 }}
                 whileHover={{
                   rotate: 0,
                   scale: 1,
@@ -166,7 +168,7 @@ export default function HeroSection() {
                 }}
                 style={{
                   transformOrigin: "top right",
-                  boxShadow: "8px 8px 0 var(--border)"
+                  boxShadow: isMobile ? "4px 4px 0 var(--border)" : "8px 8px 0 var(--border)"
                 }}
               >
                 <Image
@@ -179,7 +181,7 @@ export default function HeroSection() {
               </motion.div>
               {/* Floating decorator icons around avatar */}
               <motion.div
-                className="absolute top-0 -left-8 border-black p-1 rounded-lg cursor-pointer"
+                className="hidden md:block absolute top-0 -left-8 border-black p-1 rounded-lg cursor-pointer"
                 animate={{
                   x: [0, -15, 0],
                   rotate: [0, 5, -15, 0],
@@ -194,7 +196,7 @@ export default function HeroSection() {
                 <FragmentIcon />
               </motion.div>
               <motion.div
-                className="absolute -bottom-2 -left-10 cursor-pointer transition-all duration-300"
+                className="hidden md:block absolute -bottom-2 -left-10 cursor-pointer transition-all duration-300"
                 animate={{
                   y: [0, -15, 0],
                   rotate: [5, 0, -5, -10],
@@ -213,7 +215,7 @@ export default function HeroSection() {
                 style={{
                   boxShadow: "5px 5px 0 var(--border)"
                 }}
-                className="absolute -bottom-6 -right-6 bg-accent border-3 border-black px-7 py-3 cursor-pointer hover:bg-cyan-300 transition-all duration-300"
+                className="absolute -bottom-6 right-0 md:-right-6 bg-accent border-2 md:border-3 border-black px-7 py-3 cursor-pointer hover:bg-cyan-300 transition-all duration-300"
                 animate={{
                   x: [0, 10, 0],
                 }}
@@ -229,7 +231,7 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.div
-              className="absolute bottom-20 right-20 z-10 bg-yellow border-3 border-black p-2 rounded-lg cursor-pointer hover:bg-yellow transition-all duration-300"
+              className="hidden md:block absolute bottom-20 right-20 z-10 bg-yellow border-3 border-black p-2 rounded-lg cursor-pointer hover:bg-yellow transition-all duration-300"
               animate={{
                 y: [0, 20, 0],
                 rotate: [0, -5, 5, 0],

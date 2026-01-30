@@ -2,53 +2,17 @@
 
 import { motion, Variants, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile();
 
   // Scroll progress relative to this section
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   })
-
-  /* ---------------- Highlighted Text Component ---------------- */
-  const HighlightedText = ({
-    text,
-    highlight,
-    start,
-    end,
-  }: {
-    text: string
-    highlight: string
-    start: number
-    end: number
-  }) => {
-    const bgOpacity = useTransform(scrollYProgress, [start, end], [0, 1])
-    const scale = useTransform(scrollYProgress, [start, end], [1, 1])
-    const border = useTransform(scrollYProgress, [start, end], [0, 3])
-
-    const parts = text.split(new RegExp(`(${highlight})`, "gi"))
-    return (
-      <>
-        {parts.map((part, i) =>
-          part.toLowerCase() === highlight.toLowerCase() ? (
-            <motion.span
-              key={i}
-              className="font-bold px-2 text-black inline-block"
-              style={{
-                backgroundColor: `rgba(34,211,238,${bgOpacity.get()})`,
-              }}
-            >
-              {part}
-            </motion.span>
-          ) : (
-            part
-          )
-        )}
-      </>
-    )
-  }
 
   /* ---------------- Framer Variants ---------------- */
   const containerVariants: Variants = {
@@ -98,7 +62,7 @@ export default function AboutSection() {
 
         {/* Main Content */}
         <motion.div
-          style={{ boxShadow: "8px 8px 0px rgba(0, 0, 0, 1)" }}
+          style={{ boxShadow: isMobile ? "4px 4px 0px rgba(0, 0, 0, 1)" : "8px 8px 0px rgba(0, 0, 0, 1)" }}
           variants={itemVariants}
           className="space-y-6 bg-white px-4 md:px-6 lg:px-8 py-6 md:py-8 border-3 border-black">
           <p className="text-md text-gray-800 leading-8">

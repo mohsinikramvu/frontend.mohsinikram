@@ -3,6 +3,7 @@
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { Flame, Moon } from "lucide-react"
 import { useState } from "react"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface HeaderProps {
   activeNav?: string
@@ -11,6 +12,7 @@ interface HeaderProps {
 
 export default function Header({ activeNav = "home", onNavChange }: HeaderProps) {
   const [hidden, setHidden] = useState(false)
+  const isMobile = useIsMobile()
   const { scrollY } = useScroll()
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -31,18 +33,18 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
 
   return (
     <motion.header
-      className={"navbar"}
+      className={"navbar mx-3 lg:mx-4 mt-7"}
       variants={{
         visible: { y: 0 },
         hidden: { y: "-140%" },
       }}
       animate={hidden ? "hidden" : "visible"}
       style={{
-        boxShadow: "6px 6px 0px 0px rgba(0,0,0,1)",
+        boxShadow: isMobile ? "4px 4px 0px 0px rgba(0,0,0,1)" : "6px 6px 0px 0px rgba(0,0,0,1)",
       }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
     >
-      <div className="mx-auto px-6 py-2 flex items-center justify-between">
+      <div className="mx-auto px-3 lg:px-6 py-2 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <motion.button
             onClick={() => onNavChange?.("home")}
@@ -100,7 +102,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
           {/* CTA and Theme Toggle */}
           <div className="flex gap-4">
             <motion.button
-              className="bg-cyan border-3 border-black px-6 py-2 font-bold text-black cursor-pointer"
+              className="bg-cyan border-2 md:border-3 border-black px-4 lg:px-6 py-2 rounded font-bold text-black cursor-pointer"
               style={{
                 boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
               }}
@@ -115,7 +117,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
               Get in Touch!
             </motion.button>
             <motion.button
-              className="bg-cyan border-3 border-black w-12 flex items-center justify-center text-black font-bold cursor-pointer"
+              className="bg-cyan border-2 md:border-3 border-black w-10 md:w-12 rounded flex items-center justify-center text-black font-bold cursor-pointer"
               style={{
                 boxShadow: "3px 3px 0px 0px rgba(0,0,0,1)",
               }}

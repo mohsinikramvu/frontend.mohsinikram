@@ -16,6 +16,6 @@ export default function Home() {
   }, [])
 
   return <div className="relative">
-    {isLoading ? <SplashScreen /> : <Resume />}
+    {isLoading ? <SplashScreen /> : <div className="p-2 md:p-3 lg:p-5"><Resume /></div>}
   </div>
 }

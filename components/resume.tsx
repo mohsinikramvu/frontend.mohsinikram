@@ -38,8 +38,8 @@ export default function Resume() {
 
   return (
     <div style={{
-      boxShadow: "10px 10px 0px 0px rgba(0,0,0,1)",
-    }} className="min-h-screen page-wrapper">
+      boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)",
+    }} className="min-h-screen page-wrapper mt-0 md:pt-2 lg:pt-4 border-2 border-black lg:border-4">
       <ScrollProgress />
       <Header activeNav={activeNav} onNavChange={scrollToSection} />
 

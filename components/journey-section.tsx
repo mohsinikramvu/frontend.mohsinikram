@@ -1,5 +1,6 @@
 "use client"
 
+import { useIsMobile } from "@/hooks/use-mobile"
 import { motion, Variants } from "framer-motion"
 import { useState, useRef, useEffect } from "react"
 
@@ -66,6 +67,7 @@ export default function JourneySection() {
   const [scrollProgress, setScrollProgress] = useState(0)
   const [zoomLevel, setZoomLevel] = useState(1)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,14 +117,14 @@ export default function JourneySection() {
     >
       <div className="">
         <motion.div
-          style={{ boxShadow: "8px 8px 0px rgba(0, 0, 0, 1)" }}
+          style={{ boxShadow: isMobile ? "4px 4px 0px rgba(0, 0, 0, 1)" : "8px 8px 0px rgba(0, 0, 0, 1)" }}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.8 }}
-          className="mb-16 bg-white p-6 border-3 border-black"
+          className="mb-12 md:mb-16 bg-white p-4 md:p-6 border-3 border-black"
         >
-          <h2 className="text-4xl font-black text-black text-center">My Journey</h2>
+          <h2 className="text-2xl md:text-4xl font-black text-black text-center">My Journey</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
