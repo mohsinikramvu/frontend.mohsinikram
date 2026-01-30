@@ -73,9 +73,7 @@ export default function HeroSection() {
 
             {/* Description */}
             <motion.p variants={itemVariants} className="text-gray-700 text-md md:text-lg leading-relaxed">
-              Based in Lahore, Pakistan, I'm a Senior Software Engineer. I love to work with distributed systems, data
-              pipelines, and cloud technologies. I'm passionate about microservices, full-stack development, and
-              building cool stuff.
+              Based in Lahore, Pakistan. I’m — a Senior Frontend Engineer and Team Lead with over seven years of experience building and leading the development of scalable, performance-driven user interfaces. I combine strong frontend fundamentals with AI-powered tools such as Claude and Cursor to help teams ship faster without compromising quality.
             </motion.p>
 
             {/* Social Icons */}

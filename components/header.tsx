@@ -22,14 +22,15 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
     } else {
       setHidden(false)
     }
-  })
+  });
 
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
     { id: "journey", label: "Journey" },
+    { id: "projects", label: "Projects" },
     { id: "skills", label: "Skills" },
-  ]
+  ];
 
   return (
     <motion.header

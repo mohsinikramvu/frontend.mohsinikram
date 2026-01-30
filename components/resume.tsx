@@ -11,6 +11,7 @@ import ScrollProgress from "./scroll-progress"
 import { useRef, useState } from "react"
 import PageGap from "./page-gap"
 import { useScroll, useTransform } from "framer-motion"
+import ProjectSection from "./project-section"
 
 const portfolioOwner = {
   name: "Mohsin Ikram",
@@ -67,6 +68,10 @@ export default function Resume() {
 
       <div id="about">
         <AboutSection />
+      </div>
+
+      <div id="projects">
+        <ProjectSection />
       </div>
 
       <div id="journey">

@@ -3,6 +3,7 @@
 import { motion, Variants, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import { useIsMobile } from "@/hooks/use-mobile"
+import HighlightText from "./highlight-text"
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -37,7 +38,6 @@ export default function AboutSection() {
 
   /* ---------------- Progress Bar ---------------- */
   const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "96px"])
-  const highlightWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
   return (
     <motion.section
@@ -66,28 +66,17 @@ export default function AboutSection() {
           variants={itemVariants}
           className="space-y-6 bg-white px-4 md:px-6 lg:px-8 py-6 md:py-8 border-3 border-black">
           <p className="text-md text-gray-800 leading-8">
-            Highly experienced and dynamic software engineer with a rich professional background spanning over
-            <span className="relative inline-block px-2 font-bold text-black">
-              <motion.span
-                className="absolute inset-0 bg-yellow-400"
-                style={{ width: highlightWidth }}
-              />
-              <span className="z-10 relative">11 years</span>
-            </span>.
-            Throughout my career, I've held positions in renowned tech companies across Albania, France, USA, and Germany. My contributions have been pivotal in designing and constructing microservices for distributed systems, implementing data pipelines on Google Cloud, and engaging in
-            <span className="relative inline-block px-2 font-bold text-black">
-              <motion.span
-                className="absolute inset-0 bg-primary"
-                style={{ width: highlightWidth }}
-              />
-              <span className="z-10 relative">full-stack development</span>
-            </span>.
+            Highly experienced and results-driven <HighlightText bgColor="#FFD700" text="Senior Frontend Engineer" direction="right" /> and <HighlightText bgColor="#66d9ef" text="Frontend Team Lead" direction="left" /> with over
+            <HighlightText bgColor="#a8e6cf" text="seven years" direction="right" /> of professional experience building and scaling modern web applications. Throughout my career, I have led frontend initiatives, architected scalable UI systems, and delivered <HighlightText bgColor="#ff6b9d" text="high-performance, user-centric interfaces" direction="left" /> across diverse products and teams.
           </p>
           <p className="text-md text-gray-800 leading-8">
-            My passion for continuous learning and innovation is evident through my active presence on various platforms. I thrive on staying updated with the latest trends and technologies in the ever-evolving tech landscape.
+            My expertise spans frontend architecture, <HighlightText bgColor="#a8e6cf" text="performance optimization" />, <HighlightText text="accessibility" bgColor="#ff6b9d" />, and modern JavaScript ecosystems, combined with hands-on leadership in <HighlightText text="mentoring engineers" bgColor="#FFD700" direction="right" />, driving technical standards, and collaborating closely with product and design stakeholders. I have played a key role in transforming complex requirements into elegant, maintainable, and scalable frontend solutions.
           </p>
           <p className="text-md text-gray-800 leading-8">
-            I bring a unique blend of technical expertise, leadership qualities, and a genuine enthusiasm for creating impactful software solutions.
+            I actively embrace <HighlightText bgColor="#66d9ef" text="AI-assisted development" /> tools to enhance productivity, streamline engineering <HighlightText bgColor="#FFD700" text="workflows" />, and improve code quality, while maintaining a strong focus on best practices and long-term maintainability. Passionate about continuous learning and <HighlightText text="innovation" bgColor="#ff6b9d" />, I stay aligned with emerging <HighlightText bgColor="#FFD700" text="frontend trends and technologies" /> in an ever-evolving digital landscape.
+          </p>
+          <p className="text-md text-gray-800 leading-8">
+            I bring a balanced mix of deep technical expertise, leadership mindset, and genuine enthusiasm for building <HighlightText bgColor="#a8e6cf" text="impactful" />, future-ready software solutions that deliver measurable value.
           </p>
         </motion.div>
       </div>
