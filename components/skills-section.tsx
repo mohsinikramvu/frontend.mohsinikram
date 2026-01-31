@@ -101,7 +101,6 @@ export default function SkillsSection() {
       {/* Main Skills Grid */}
       <motion.section
         className="pb-12 px-6 md:px-12"
-        initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: false, amount: 0.3 }}

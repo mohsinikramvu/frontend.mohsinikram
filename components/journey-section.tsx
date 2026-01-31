@@ -110,14 +110,13 @@ export default function JourneySection() {
     <motion.section
       ref={sectionRef}
       className="pt-12 pb-20 px-6 md:px-12"
-      initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
-      viewport={{ once: false, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.3 }}
     >
       <div className="">
         <motion.div
-          style={{ boxShadow: isMobile ? "4px 4px 0px rgba(0, 0, 0, 1)" : "8px 8px 0px rgba(0, 0, 0, 1)" }}
+          style={{ boxShadow: isMobile ? "4px 4px 0px rgba(0, 0, 0, 1)" : "4px 4px 0px rgba(0, 0, 0, 1)" }}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
