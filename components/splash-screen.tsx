@@ -1,6 +1,8 @@
 "use client"
 
 import { motion, Variants } from "framer-motion"
+import FragmentIcon from "./icons/FragmentIcon"
+import FloppyIcon from "./icons/FloppyIcon"
 
 export default function SplashScreen() {
   const containerVariants: Variants = {
@@ -48,30 +50,56 @@ export default function SplashScreen() {
   }
 
   return (
-    <div style={{ height: "calc(100vh - 64px)" }} className="flex items-center justify-center bg-linear-to-br from-[#FCD34D] to-[#F8B500]">
+    <div style={{ height: "calc(100vh - 0px)" }} className="flex items-center justify-center bg-linear-to-br from-[#FCD34D] to-[#F8B500]">
       {/* Decorative icons */}
-      <motion.div className="absolute top-20 left-12 text-4xl" variants={floatingVariants} animate="animate">
-        <div className="bg-cyan-300 border-2 border-black p-2 rounded transform -rotate-12">{"</>"}</div>
+      <motion.div
+        className="hidden md:block absolute top-20 left-12 border-black p-1 rounded-lg cursor-pointer"
+        animate={{
+          x: [0, -15, 0],
+          rotate: [0, 5, -15, 0],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
+        whileHover={{ scale: 1 }}
+      >
+        <FragmentIcon />
       </motion.div>
 
       <motion.div
-        className="absolute top-24 right-12 text-3xl font-bold"
-        variants={floatingVariants}
-        animate="animate"
-        transition={{ delay: 0.5 }}
+        className="hidden md:block absolute top-20 right-10 cursor-pointer transition-all duration-300"
+        animate={{
+          y: [0, -15, 0],
+          rotate: [5, 0, -5, -10],
+        }}
+        transition={{
+          duration: 4,
+          delay: 0.6,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "linear",
+        }}
+        whileHover={{ scale: 1.15, boxShadow: "0 8px 16px rgba(0,0,0,0.2)" }}
       >
-        <div className="bg-yellow-100 border-2 border-black px-4 py-2 rounded transform rotate-12 font-mono">&gt;_</div>
+        <FloppyIcon />
       </motion.div>
 
       <motion.div
-        className="absolute bottom-20 left-16 text-3xl"
-        variants={floatingVariants}
-        animate="animate"
-        transition={{ delay: 1 }}
+        className="hidden md:block absolute bottom-20 left-10 cursor-pointer transition-all duration-300"
+        animate={{
+          y: [0, -15, 0],
+          rotate: [5, 0, -5, -10],
+        }}
+        transition={{
+          duration: 4,
+          delay: 0.6,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "linear",
+        }}
+        whileHover={{ scale: 1.15, boxShadow: "0 8px 16px rgba(0,0,0,0.2)" }}
       >
-        <div className="bg-cyan-300 border-2 border-black p-3 rounded">
-          <div className="w-8 h-8 border-2 border-black"></div>
-        </div>
+        <FloppyIcon />
       </motion.div>
 
       {/* Main content */}
@@ -83,8 +111,8 @@ export default function SplashScreen() {
       >
         {/* MB Logo */}
         <motion.div className="flex gap-2" variants={itemVariants}>
-          <div className="bg-cyan-300 border-4 border-black px-6 py-4 text-5xl font-black">M</div>
-          <div className="bg-pink-400 border-4 border-black px-6 py-4 text-5xl font-black">B</div>
+          <div className="bg-cyan-300 border-4 border-black px-6 py-4 w-24 rounded text-5xl font-black text-center">M</div>
+          <div className="bg-pink-400 border-4 border-black px-6 py-4 w-24 rounded text-5xl font-black text-center">I</div>
         </motion.div>
 
         {/* Loading Bar */}
@@ -103,13 +131,31 @@ export default function SplashScreen() {
       </motion.div>
 
       {/* Bottom right corner element */}
-      <motion.div
+      {/* <motion.div
         className="absolute bottom-12 right-12 text-2xl"
         variants={floatingVariants}
         animate="animate"
         transition={{ delay: 1.5 }}
       >
         <div className="border-2 border-black w-12 h-12 flex items-center justify-center bg-yellow-100 rounded">💾</div>
+      </motion.div> */}
+      <motion.div
+        className="hidden md:block absolute bottom-20 right-20 z-10 bg-yellow border-3 border-black p-2 rounded-lg cursor-pointer hover:bg-yellow transition-all duration-300"
+        animate={{
+          y: [0, 20, 0],
+          rotate: [0, -5, 5, 0],
+        }}
+        style={{
+          boxShadow: "5px 5px 0 var(--border)"
+        }}
+        transition={{
+          duration: 3,
+          delay: 0.2,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
+      >
+        <code className="text-4xl font-black text-black">&gt;_</code>
       </motion.div>
     </div>
   )

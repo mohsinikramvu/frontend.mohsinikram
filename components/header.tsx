@@ -47,8 +47,8 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
     >
       <div className="mx-auto px-3 lg:px-6 py-2 flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <motion.button
-            onClick={() => onNavChange?.("home")}
+          <motion.a
+            href="/"
             className="bg-cyan border-3 border-black rounded px-4 py-2 font-black text-black text-xl cursor-pointer"
             style={{
               boxShadow: "3px 3px 0px 0px rgba(0,0,0,1)",
@@ -62,7 +62,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
             whileTap={{ rotate: 0 }}
           >
             MI
-          </motion.button>
+          </motion.a>
         </div>
 
         <div className="flex items-center gap-8">
