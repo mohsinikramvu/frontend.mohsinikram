@@ -49,7 +49,7 @@ export default function ProjectSection({ viewAll }: { viewAll: boolean }) {
                 {projects.map((project, index) => (
                     <Link href={`/projects/${project.id}`} key={project.id}>
                         <motion.div
-                            className="border-3 bg-white border-black p-4 h-80 cursor-pointer relative group overflow-hidden"
+                            className="border-3 rounded-lg bg-white border-black p-4 h-80 cursor-pointer relative group overflow-hidden"
                             variants={itemVariants}
                             initial="hidden"
                             whileInView="visible"

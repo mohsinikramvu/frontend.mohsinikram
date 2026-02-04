@@ -64,7 +64,7 @@ export default function Footer({ name, title, onNavChange }: FooterProps) {
             transition={{ delay: 0.4, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="text-sm text-gray-600">© 2025 {name}</p>
+            <p className="text-sm text-gray-600">© {new Date().getFullYear()} {name}</p>
           </motion.div>
           <div className='flex gap-2 items-center'>
             <IoIosMail size={25} color='#66d9ef' />
