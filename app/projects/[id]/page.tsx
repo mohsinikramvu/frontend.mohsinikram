@@ -38,10 +38,10 @@ export default function ProjectDetails() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="pt-20 pb-12 px-6 md:px-12"
+                className="pt-12 pb-12 px-6 md:px-12"
             >
                 {/* Navigation & Header */}
-                <div className="container mx-auto px-4 py-6 flex items-center justify-between">
+                <div className="container mx-auto pb-6 flex items-center justify-between">
                     <Link href="/projects" className="flex items-center gap-2 text-black/70 hover:text-black transition-colors font-medium">
                         <ArrowLeft size={20} /> Back to Projects
                     </Link>
@@ -56,7 +56,7 @@ export default function ProjectDetails() {
                 </div>
 
                 {/* Hero Slider Section */}
-                <div className="container mx-auto px-4 mb-12">
+                <div className="container mx-auto mb-12">
                     <div className="relative w-full aspect-video rounded-xl overflow-hidden border-3 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white">
                         <AnimatePresence mode="wait">
                             <motion.img

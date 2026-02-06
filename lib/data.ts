@@ -50,7 +50,9 @@ export const projects: Project[] = [
         longDescription: "DoneEasy is a modern e-commerce solution tailored for businesses looking to scale their online presence. It provides a robust architecture for handling high traffic and complex product catalogs. The platform integrates seamlessly with various payment gateways and shipping providers, offering a unified dashboard for managing all aspects of online retail.",
         image: "/portfolio/nextjs/doneeasy-1.png",
         screenshots: [
-            "/portfolio/nextjs/doneeasy-1.png",
+            "/projects/doneeasy/1.png",
+            "/projects/doneeasy/2.png",
+            "/projects/doneeasy/3.png",
         ],
         link: "https://www.doneeasy.io/",
         category: "NextJS",

@@ -53,7 +53,7 @@ export default function Resume() {
       </div>
 
       <div id="projects">
-        <ProjectSection viewAll={true} />
+        <ProjectSection viewAll={false} />
       </div>
 
       <div id="journey">

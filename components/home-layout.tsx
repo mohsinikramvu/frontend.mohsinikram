@@ -1,7 +1,10 @@
-import { useState } from "react";
+"use client"
+
+import { useState, useEffect } from "react";
 import Header from "./header";
 import ScrollProgress from "./scroll-progress";
 import Footer from "./footer";
+import { usePathname, useRouter } from "next/navigation";
 
 const portfolioOwner = {
     name: "Mohsin Ikram",
@@ -10,8 +13,47 @@ const portfolioOwner = {
 
 const HomeLayout = ({ children }: { children: React.ReactNode }) => {
     const [activeNav, setActiveNav] = useState("home")
+    const pathname = usePathname()
+    const router = useRouter()
+
+    useEffect(() => {
+        if (pathname.startsWith("/projects")) {
+            setActiveNav("projects")
+        }
+    }, [pathname])
+
+    useEffect(() => {
+        if (pathname !== "/") return;
+
+        const handleScroll = () => {
+            const sections = ["home", "about", "projects", "journey", "skills", "contact"];
+            const scrollPosition = window.scrollY + 100; // Offset for header
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        setActiveNav(section);
+                        break;
+                    }
+                }
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        // Call once to set initial state
+        handleScroll();
+        
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [pathname]);
 
     const scrollToSection = (sectionId: string) => {
+        if (pathname !== "/") {
+            router.push(`/#${sectionId}`);
+            return;
+        }
+
         setActiveNav(sectionId)
         const element = document.getElementById(sectionId)
         if (element) {
