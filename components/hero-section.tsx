@@ -72,7 +72,7 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Description */}
-            <motion.p variants={itemVariants} className="text-gray-700 text-sm md:text-base lg:text-lg leading-relaxed">
+            <motion.p variants={itemVariants} className="text-gray-700 text-sm md:text-base lg:text-md leading-relaxed">
               Based in Lahore, Pakistan. I’m — a Senior Frontend Engineer and Team Lead with over seven years of experience building and leading the development of scalable, performance-driven user interfaces. I combine strong frontend fundamentals with AI-powered tools such as Claude and Cursor to help teams ship faster without compromising quality.
             </motion.p>
 

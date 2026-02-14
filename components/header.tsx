@@ -87,7 +87,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
           {/* CTA and Theme Toggle */}
           <div className="flex gap-4 h-10 items-center">
             <motion.button
-              className="bg-cyan hidden md:block border-2 md:border-3 border-black px-4 lg:px-6 py-2 rounded font-bold text-black cursor-pointer"
+              className="bg-cyan hidden md:block border-2 md:border-3 border-black px-4 lg:px-6 h-full rounded font-bold text-black cursor-pointer"
               style={{
                 boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
               }}

@@ -2,7 +2,9 @@
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { motion, Variants } from "framer-motion"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
+import { GoogleMap, useJsApiLoader, OverlayView } from '@react-google-maps/api';
+import { MinusIcon, PlusIcon } from "lucide-react";
 
 interface TimelineItem {
   id: string
@@ -57,17 +59,143 @@ const timelineData: TimelineItem[] = [
   },
 ]
 
+// Real coordinates for Lahore locations
 const locations = [
-  { name: "M2Logics", x: 62, y: 35 },
-  { name: "Technology Brainz", x: 52, y: 40 },
-  { name: "BrandJaws", x: 58, y: 48 },
-]
+  { name: "OrangeTree Systems", lat: 31.454783377951124, lng: 74.32477955536159 },
+  { name: "M2Logics", lat: 31.545444537770777, lng: 74.33204490784424 },
+  { name: "Technology Brainz", lat: 31.50752705775871, lng: 74.27925320384578 },
+  { name: "BrandJaws", lat: 31.479671126842348, lng: 74.3249800325814 },
+];
+
+const mapContainerStyle = {
+  width: '100%',
+  height: '100%',
+  borderRadius: '0.5rem'
+};
+
+const center = {
+  lat: 31.485,
+  lng: 74.300
+};
+
+const mapOptions = {
+  disableDefaultUI: true,
+  zoomControl: false,
+  styles: [
+    {
+      "elementType": "geometry",
+      "stylers": [{ "color": "#fdf7e3" }] // Light warm background
+    },
+    {
+      "elementType": "labels.icon",
+      "stylers": [{ "visibility": "off" }]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [{ "color": "#616161" }]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [{ "color": "#f5f5f5" }]
+    },
+    {
+      "featureType": "administrative.land_parcel",
+      "elementType": "labels.text.fill",
+      "stylers": [{ "color": "#bdbdbd" }]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "geometry",
+      "stylers": [{ "color": "#eeeeee" }]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [{ "color": "#757575" }]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [{ "color": "#e5e5e5" }]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [{ "color": "#9e9e9e" }]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry",
+      "stylers": [{ "color": "#ffffff" }]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "labels.text.fill",
+      "stylers": [{ "color": "#757575" }]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [{ "color": "#dadada" }]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "labels.text.fill",
+      "stylers": [{ "color": "#616161" }]
+    },
+    {
+      "featureType": "road.local",
+      "elementType": "labels.text.fill",
+      "stylers": [{ "color": "#9e9e9e" }]
+    },
+    {
+      "featureType": "transit.line",
+      "elementType": "geometry",
+      "stylers": [{ "color": "#e5e5e5" }]
+    },
+    {
+      "featureType": "transit.station",
+      "elementType": "geometry",
+      "stylers": [{ "color": "#eeeeee" }]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [{ "color": "#c9c9c9" }]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [{ "color": "#9e9e9e" }]
+    }
+  ]
+};
 
 export default function JourneySection() {
   const [scrollProgress, setScrollProgress] = useState(0)
-  const [zoomLevel, setZoomLevel] = useState(1)
+  const [mapZoom, setMapZoom] = useState(12)
   const sectionRef = useRef<HTMLDivElement>(null)
   const isMobile = useIsMobile();
+  const [map, setMap] = useState<google.maps.Map | null>(null)
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""
+  })
+
+  const onLoad = useCallback(function callback(map: google.maps.Map) {
+    setMap(map)
+  }, [])
+
+  const onUnmount = useCallback(function callback(map: google.maps.Map) {
+    setMap(null)
+  }, [])
+
+  useEffect(() => {
+    if (map) {
+      map.setZoom(mapZoom)
+    }
+  }, [mapZoom, map])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -182,79 +310,89 @@ export default function JourneySection() {
             transition={{ duration: 0.7, delay: 0.3 }}
             viewport={{ once: false, amount: 0.3 }}
           >
-            <div className="relative border-4 border-black bg-linear-to-br from-amber-100 to-orange-100 overflow-hidden rounded-lg h-full">
-              {/* Map background */}
-              <motion.div
-                className="relative w-full h-full bg-cover bg-center flex items-center justify-center"
-                style={{
-                  backgroundImage: "linear-gradient(135deg, rgba(147, 197, 253, 0.3) 0%, rgba(253, 224, 71, 0.3) 100%)",
-                }}
-              >
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="40" cy="30" r="35" fill="#E8D4C0" opacity="0.3" />
-                </svg>
-
-                {/* Location markers */}
-                {locations.map((loc, idx) => (
-                  <motion.div
-                    key={loc.name}
-                    className="absolute flex flex-col items-center"
-                    style={{ left: `${loc.x}%`, top: `${loc.y}%` }}
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.5 + idx * 0.2, duration: 0.5 }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    whileHover={{ scale: 1.2 }}
-                  >
-                    {/* Marker circle */}
-                    <motion.div
-                      className="w-6 h-6 bg-yellow border-3 border-black rounded-full mb-2"
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                    />
-                    {/* Label */}
-                    <motion.div className="bg-yellow border-2 border-black px-2 py-1 text-xs font-black text-black whitespace-nowrap">
-                      {loc.name}
-                    </motion.div>
-                  </motion.div>
-                ))}
-
-                {/* Zoom controls */}
-                <div className="absolute top-4 right-4 flex flex-col gap-2">
-                  <motion.button
-                    className="w-10 h-10 bg-accent border-3 border-black font-bold text-lg hover:bg-cyan transition-all"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setZoomLevel((z) => Math.min(z + 0.2, 2))}
-                  >
-                    +
-                  </motion.button>
-                  <motion.button
-                    className="w-10 h-10 bg-accent border-3 border-black font-bold text-lg hover:bg-cyan transition-all"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setZoomLevel((z) => Math.max(z - 0.2, 1))}
-                  >
-                    −
-                  </motion.button>
-                  <motion.button
-                    className="w-10 h-10 bg-black border-3 border-black font-bold text-lg text-white hover:bg-gray-800 transition-all flex items-center justify-center"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setZoomLevel(1)}
-                  >
-                    🏠
-                  </motion.button>
-                </div>
-
-                {/* Pirate character placeholder */}
-                <motion.div
-                  className="absolute bottom-4 left-4 text-5xl"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+            <div className="relative border-4 border-black bg-white overflow-hidden rounded-lg h-[600px] w-full">
+              {/* Google Map */}
+              {isLoaded ? (
+                <GoogleMap
+                  mapContainerStyle={mapContainerStyle}
+                  center={center}
+                  zoom={mapZoom}
+                  options={mapOptions}
+                  onLoad={onLoad}
+                  onUnmount={onUnmount}
                 >
-                  🏴‍☠️
-                </motion.div>
+                  {/* Custom Markers using OverlayView to maintain original design */}
+                  {locations.map((loc, idx) => (
+                    <OverlayView
+                      key={loc.name}
+                      position={{ lat: loc.lat, lng: loc.lng }}
+                      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                    >
+                      <motion.div
+                        className="absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10"
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.5 + idx * 0.2, duration: 0.5 }}
+                        whileHover={{ scale: 1.2, zIndex: 50 }}
+                      >
+                        {/* Marker circle */}
+                        <motion.div
+                          className="w-6 h-6 bg-yellow border-3 border-black rounded-full mb-2 shadow-lg"
+                          animate={{ scale: [1, 1.1, 1] }}
+                          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                        />
+                        {/* Label */}
+                        <motion.div className="bg-yellow border-2 border-black px-2 py-1 text-xs font-black text-black whitespace-nowrap shadow-md">
+                          {loc.name}
+                        </motion.div>
+                      </motion.div>
+                    </OverlayView>
+                  ))}
+                </GoogleMap>
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                  <p className="font-bold text-lg">Loading Map...</p>
+                </div>
+              )}
+
+              {/* Zoom controls */}
+              <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
+                <motion.button
+                  className="w-10 h-10 bg-accent border-3 inline-flex justify-center items-center border-black font-bold text-lg hover:bg-cyan transition-all"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setMapZoom((z) => Math.min(z + 1, 18))}
+                >
+                  <PlusIcon />
+                </motion.button>
+                <motion.button
+                  className="w-10 h-10 bg-accent border-3 inline-flex justify-center items-center border-black font-bold text-lg hover:bg-cyan transition-all"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setMapZoom((z) => Math.max(z - 1, 10))}
+                >
+                  <MinusIcon />
+                </motion.button>
+                <motion.button
+                  className="w-10 h-10 bg-black border-3 border-black font-bold text-lg text-white hover:bg-gray-800 transition-all flex items-center justify-center"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    setMapZoom(12);
+                    map?.panTo(center);
+                  }}
+                >
+                  🏠
+                </motion.button>
+              </div>
+
+              {/* Pirate character placeholder */}
+              <motion.div
+                className="absolute bottom-4 left-4 text-5xl z-10 pointer-events-none"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              >
+                🏴‍☠️
               </motion.div>
             </div>
           </motion.div>
@@ -263,3 +401,4 @@ export default function JourneySection() {
     </motion.section>
   )
 }
+
