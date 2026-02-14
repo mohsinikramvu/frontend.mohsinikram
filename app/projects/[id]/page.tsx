@@ -7,10 +7,12 @@ import HomeLayout from "@/components/home-layout";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function ProjectDetails() {
     const { id } = useParams();
     const project = projects.find((p) => p.id === id);
+    const isMobile = useIsMobile();
 
     const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -41,7 +43,7 @@ export default function ProjectDetails() {
                 className="pt-12 pb-12 px-6 md:px-12"
             >
                 {/* Navigation & Header */}
-                <div className="container mx-auto pb-6 flex items-center justify-between">
+                <div className="container mx-auto pb-6 flex flex-wrap gap-4 items-center justify-between">
                     <Link href="/projects" className="flex items-center gap-2 text-black/70 hover:text-black transition-colors font-medium">
                         <ArrowLeft size={20} /> Back to Projects
                     </Link>
@@ -57,7 +59,9 @@ export default function ProjectDetails() {
 
                 {/* Hero Slider Section */}
                 <div className="container mx-auto mb-12">
-                    <div className="relative w-full aspect-video rounded-xl overflow-hidden border-3 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white">
+                    <div style={{
+                        boxShadow: isMobile ? "5px 5px 0px rgba(0, 0, 0, 1)" : "8px 8px 0px rgba(0, 0, 0, 1)",
+                    }} className="relative w-full aspect-video overflow-hidden border-3 border-black bg-white">
                         <AnimatePresence mode="wait">
                             <motion.img
                                 key={currentSlide}
@@ -104,14 +108,14 @@ export default function ProjectDetails() {
                             </>
                         )}
 
-                        <div className="absolute top-4 left-4 bg-white border-2 border-black px-4 py-2 rounded font-black text-xl z-10 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <div className="absolute top-4 left-4 bg-white border-2 border-black px-4 py-2 text-sm font-black md:text-xl z-10 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                             {project.title}
                         </div>
                     </div>
                 </div>
 
                 {/* Content Section */}
-                <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div className="container mx-auto px-0 md:px-4 grid grid-cols-1 lg:grid-cols-3 gap-12">
                     {/* Main Details */}
                     <div className="lg:col-span-2 space-y-8">
                         <motion.div
@@ -132,7 +136,10 @@ export default function ProjectDetails() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
-                            className="p-6 border-3 border-black bg-[#f0f0f0] rounded-xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                            style={{
+                                boxShadow: isMobile ? "4px 4px 0px rgba(0, 0, 0, 1)" : "8px 8px 0px rgba(0, 0, 0, 1)",
+                            }}
+                            className="p-6 border-3 border-black bg-[#f0f0f0]"
                         >
                             <h3 className="text-2xl font-bold mb-3">Key Features</h3>
                             <ul className="list-disc list-inside space-y-2 text-gray-800">
@@ -150,9 +157,12 @@ export default function ProjectDetails() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="p-6 border-3 border-black bg-white rounded-xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden"
+                            style={{
+                                boxShadow: isMobile ? "4px 4px 0px rgba(0, 0, 0, 1)" : "8px 8px 0px rgba(0, 0, 0, 1)",
+                            }}
+                            className="p-6 border-3 border-black bg-white"
                         >
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-yellow-300 rounded-full -mr-12 -mt-12 z-0 opacity-50" />
+                            {/* <div className="absolute top-0 right-0 w-24 h-24 bg-yellow-300 rounded-full -mr-12 -mt-12 z-0 opacity-50" /> */}
 
                             <h3 className="text-xl font-black mb-4 relative z-10">My Role</h3>
                             <div className="prose relative z-10">

@@ -5,6 +5,7 @@ import Header from "./header";
 import ScrollProgress from "./scroll-progress";
 import Footer from "./footer";
 import { usePathname, useRouter } from "next/navigation";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const portfolioOwner = {
     name: "Mohsin Ikram",
@@ -12,9 +13,10 @@ const portfolioOwner = {
 }
 
 const HomeLayout = ({ children }: { children: React.ReactNode }) => {
-    const [activeNav, setActiveNav] = useState("home")
-    const pathname = usePathname()
-    const router = useRouter()
+    const [activeNav, setActiveNav] = useState("home");
+    const pathname = usePathname();
+    const router = useRouter();
+    const isMobile = useIsMobile();
 
     useEffect(() => {
         if (pathname.startsWith("/projects")) {
@@ -44,7 +46,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
         window.addEventListener("scroll", handleScroll);
         // Call once to set initial state
         handleScroll();
-        
+
         return () => window.removeEventListener("scroll", handleScroll);
     }, [pathname]);
 
@@ -63,7 +65,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <div style={{
-            boxShadow: "8px 8px 0px 0px rgba(0,0,0,1)",
+            boxShadow: isMobile ? "none" : "8px 8px 0px 0px rgba(0,0,0,1)",
         }} className="min-h-screen page-wrapper mt-0 md:pt-2 lg:pt-4 border-2 border-black lg:border-4">
             <ScrollProgress />
             <Header activeNav={activeNav} onNavChange={scrollToSection} />

@@ -2,6 +2,7 @@
 
 import { motion, Variants } from 'framer-motion'
 import { Github, Linkedin, StickerIcon as StackOverflow } from 'lucide-react'
+import { useIsMobile } from '@/hooks/use-mobile'
 
 const contactLinks = [
   {
@@ -28,6 +29,7 @@ const contactLinks = [
 ]
 
 export default function ContactSection() {
+  const isMobile = useIsMobile();
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -128,7 +130,7 @@ export default function ContactSection() {
                 variants={cardVariants}
                 whileHover="hover"
                 style={{
-                  boxShadow: '8px 8px 0px rgba(0,0,0,1)',
+                  boxShadow: isMobile ? '5px 5px 0px rgba(0,0,0,1)' : '8px 8px 0px rgba(0,0,0,1)',
                 }}
               >
                 {/* Post-it Note */}

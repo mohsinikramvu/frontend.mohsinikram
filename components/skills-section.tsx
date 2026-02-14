@@ -7,6 +7,7 @@ import { Code2 } from "lucide-react"
 import { FaTools } from "react-icons/fa"
 import { SiContentful } from "react-icons/si";
 import { SiOpensearch } from "react-icons/si";
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface SkillCard {
   category: string
@@ -59,6 +60,7 @@ const methodologySkills = ["Agile", "Scrum", "CI/CD", "TDD"]
 
 export default function SkillsSection() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
+  const isMobile = useIsMobile();
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -123,7 +125,7 @@ export default function SkillsSection() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.0 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {skillsData.map((card) => (
@@ -136,7 +138,7 @@ export default function SkillsSection() {
                 }}
                 onMouseEnter={() => setHoveredCard(card.category)}
                 onMouseLeave={() => setHoveredCard(null)}
-                style={{ boxShadow: "8px 8px 0px rgba(0, 0, 0, 1)" }}
+                style={{ boxShadow: isMobile ? "5px 5px 0px rgba(0, 0, 0, 1)" : "8px 8px 0px rgba(0, 0, 0, 1)" }}
                 className="border-3 border-black p-6 bg-white cursor-pointer relative group"
               >
                 <p style={{ backgroundColor: card.iconColor }} className="absolute left-0 top-0 w-full h-1.5 z-10"></p>
@@ -179,17 +181,17 @@ export default function SkillsSection() {
       {/* Education & Languages Section */}
       <motion.section
         className="pt-20 pb-20 px-6 md:px-12"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: false, amount: 0.3 }}
+      // initial={{ opacity: 0 }}
+      // whileInView={{ opacity: 1 }}
+      // transition={{ duration: 0.7 }}
+      // viewport={{ once: true, amount: 0.0 }}
       >
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: false, amount: 0.8 }}
+            // initial={{ opacity: 0, y: -20 }}
+            // whileInView={{ opacity: 1, y: 0 }}
+            // transition={{ duration: 0.6 }}
+            // viewport={{ once: false, amount: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
             <div className="">
@@ -200,7 +202,7 @@ export default function SkillsSection() {
                 initial="hidden"
                 whileInView="visible"
                 style={{
-                  boxShadow: "8px 8px 0px rgba(0, 0, 0, 1)",
+                  boxShadow: isMobile ? "5px 5px 0px rgba(0, 0, 0, 1)" : "8px 8px 0px rgba(0, 0, 0, 1)",
                 }}
                 viewport={{ once: true, amount: 0.3 }}
                 className="border-3 border-black p-6 bg-white"
@@ -231,7 +233,7 @@ export default function SkillsSection() {
                 initial="hidden"
                 whileInView="visible"
                 style={{
-                  boxShadow: "8px 8px 0px rgba(0, 0, 0, 1)",
+                  boxShadow: isMobile ? "5px 5px 0px rgba(0, 0, 0, 1)" : "8px 8px 0px rgba(0, 0, 0, 1)",
                 }}
                 viewport={{ once: false, amount: 0.3 }}
                 className="border-3 border-black p-6 bg-white space-y-4"

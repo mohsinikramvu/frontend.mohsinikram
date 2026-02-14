@@ -1,5 +1,6 @@
 'use client'
 
+import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion'
 import { FaPhone } from 'react-icons/fa'
 import { IoIosMail } from "react-icons/io";
@@ -11,6 +12,7 @@ interface FooterProps {
 }
 
 export default function Footer({ name, title, onNavChange }: FooterProps) {
+  const isMobile = useIsMobile();
   return (
     <motion.footer
       className="py-8 px-6 md:px-12 bg-white"
@@ -23,7 +25,7 @@ export default function Footer({ name, title, onNavChange }: FooterProps) {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Left Section - Name and Title */}
           <motion.div
-            className="flex-1"
+            className="flex-1 text-center md:text-left"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -67,14 +69,14 @@ export default function Footer({ name, title, onNavChange }: FooterProps) {
             <p className="text-sm text-gray-600">© {new Date().getFullYear()} {name}</p>
           </motion.div>
           <div className='flex gap-2 items-center'>
-            <IoIosMail size={25} color='#66d9ef' />
-            <motion.a href="mailto:haiderdev1999@gmail.com" whileHover={{ scale: 1, color: "#66d9ef" }} whileTap={{ scale: 0.95 }}>
+            <IoIosMail size={isMobile ? 20 : 25} color='#66d9ef' />
+            <motion.a className={isMobile ? 'text-xs' : ''} href="mailto:haiderdev1999@gmail.com" whileHover={{ scale: 1, color: "#66d9ef" }} whileTap={{ scale: 0.95 }}>
               haiderdev1999[@]gmail[.]com
             </motion.a>
           </div>
           <div className='flex gap-2 items-center'>
-            <FaPhone size={20} color='#ffd93d' />
-            <motion.a href="tel:+923027471781" whileHover={{ scale: 1, color: "#ffd93d" }} whileTap={{ scale: 0.95 }}>
+            <FaPhone size={isMobile ? 15 : 20} color='#ffd93d' />
+            <motion.a className={isMobile ? 'text-xs' : ''} href="tel:+923027471781" whileHover={{ scale: 1, color: "#ffd93d" }} whileTap={{ scale: 0.95 }}>
               +92 302 747 1781
             </motion.a>
           </div>

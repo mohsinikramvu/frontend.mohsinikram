@@ -49,7 +49,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
         <div className="flex items-center gap-8">
           <motion.a
             href="/"
-            className="bg-cyan border-3 border-black rounded px-4 py-2 font-black text-black text-xl cursor-pointer"
+            className="bg-cyan border-3 border-black rounded px-2 py-1 md:px-4 md:py-2 font-black text-black md:text-xl cursor-pointer"
             style={{
               boxShadow: "3px 3px 0px 0px rgba(0,0,0,1)",
             }}
@@ -101,9 +101,9 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
           </motion.div> */}
 
           {/* CTA and Theme Toggle */}
-          <div className="flex gap-4">
+          <div className="flex gap-4 h-10">
             <motion.button
-              className="bg-cyan border-2 md:border-3 border-black px-4 lg:px-6 py-2 rounded font-bold text-black cursor-pointer"
+              className="bg-cyan hidden md:block border-2 md:border-3 border-black px-4 lg:px-6 py-2 rounded font-bold text-black cursor-pointer"
               style={{
                 boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
               }}
@@ -118,7 +118,7 @@ export default function Header({ activeNav = "home", onNavChange }: HeaderProps)
               Get in Touch!
             </motion.button>
             <motion.button
-              className="bg-cyan border-2 md:border-3 border-black w-10 md:w-12 rounded flex items-center justify-center text-black font-bold cursor-pointer"
+              className="bg-cyan h-full border-2 md:border-3 border-black w-10 md:w-12 rounded flex items-center justify-center text-black font-bold cursor-pointer"
               style={{
                 boxShadow: "3px 3px 0px 0px rgba(0,0,0,1)",
               }}

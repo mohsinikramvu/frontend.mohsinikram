@@ -131,7 +131,7 @@ export default function JourneySection() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.0 }}
             className="lg:col-span-1"
           >
             <div className="space-y-8 relative pl-12">
@@ -176,7 +176,7 @@ export default function JourneySection() {
           </motion.div>
 
           <motion.div
-            className="lg:col-span-2 h-1/2 lg:sticky lg:top-40 lg:self-start"
+            className="lg:col-span-2 h-1/2 lg:sticky lg:top-40 lg:self-start hidden lg:block"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
