@@ -65,7 +65,7 @@ export default function ProjectSection({ viewAll }: { viewAll: boolean }) {
                             <div className="h-full w-full absolute top-0 left-0 bg-black/5" />
                             <div className="bg-white flex flex-col gap-1 rounded p-4 
                                 left-3 right-3 absolute -bottom-full group-hover:bottom-3 transition-all duration-500 ease-in-out">
-                                <h3 className="text-lg font-black text-black inline-flex justify-between gap-2">
+                                <h3 className="text-base md:text-lg font-black text-black inline-flex justify-between gap-2">
                                     <span>{project.title}</span>
                                     <span style={{ backgroundColor: project.color }} className={`text-xs p-1 rounded mb-1`}>{project.category}</span>
                                 </h3>

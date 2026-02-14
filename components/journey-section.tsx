@@ -123,7 +123,7 @@ export default function JourneySection() {
           viewport={{ once: false, amount: 0.8 }}
           className="mb-12 md:mb-16 bg-white p-4 md:p-6 border-3 border-black"
         >
-          <h2 className="text-2xl md:text-4xl font-black text-black text-center">My Journey</h2>
+          <h2 className="text-xl md:text-4xl font-black text-black text-center">My Journey</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
@@ -164,10 +164,10 @@ export default function JourneySection() {
                     className="border-3 border-black p-5 bg-white transition-all duration-200 cursor-pointer"
                     whileHover={{ scale: 1, boxShadow: "0px 0px 0px rgba(0, 0, 0, 1)" }}
                   >
-                    <h3 className="text-lg font-black text-black mb-1">{item.title}</h3>
-                    <p className="text-sm font-bold text-cyan-600 mb-2">@ {item.company}</p>
+                    <h3 className="text-base md:text-lg font-black text-black mb-1">{item.title}</h3>
+                    <p className="text-xs md:text-sm font-bold text-cyan-600 mb-2">@ {item.company}</p>
                     <p className="text-xs text-gray-600 mb-3 font-bold">{item.period}</p>
-                    <p className="text-sm text-gray-700 leading-relaxed mb-3">{item.description}</p>
+                    <p className="text-xs md:text-sm text-gray-700 leading-relaxed mb-3">{item.description}</p>
                     <p className="text-xs font-bold text-gray-500 flex items-center gap-1">📍 {item.location}</p>
                   </motion.div>
                 </motion.div>

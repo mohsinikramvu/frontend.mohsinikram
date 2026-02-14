@@ -56,11 +56,11 @@ export default function HeroSection() {
           <motion.div variants={itemVariants} className="space-y-8">
             {/* Greeting */}
             <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
-              <span className="text-2xl md:text-4xl font-bold text-cyan">Hi there!</span>
+              <span className="text-xl md:text-3xl lg:text-4xl font-bold text-cyan">Hi there!</span>
               <motion.span
                 animate={{ rotate: [0, 20, -20, 0] }}
                 transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, repeatDelay: 2 }}
-                className="text-2xl md:text-4xl"
+                className="text-xl md:text-3xl lg:text-4xl"
               >
                 👋
               </motion.span>
@@ -68,11 +68,11 @@ export default function HeroSection() {
 
             {/* Main Heading */}
             <motion.div variants={itemVariants}>
-              <h1 className="text-3xl md:text-6xl font-black text-black leading-tight">I'm Mohsin Ikram.</h1>
+              <h1 className="text-2xl md:text-5xl lg:text-6xl font-black text-black leading-tight">I'm Mohsin Ikram.</h1>
             </motion.div>
 
             {/* Description */}
-            <motion.p variants={itemVariants} className="text-gray-700 text-md md:text-lg leading-relaxed">
+            <motion.p variants={itemVariants} className="text-gray-700 text-sm md:text-base lg:text-lg leading-relaxed">
               Based in Lahore, Pakistan. I’m — a Senior Frontend Engineer and Team Lead with over seven years of experience building and leading the development of scalable, performance-driven user interfaces. I combine strong frontend fundamentals with AI-powered tools such as Claude and Cursor to help teams ship faster without compromising quality.
             </motion.p>
 

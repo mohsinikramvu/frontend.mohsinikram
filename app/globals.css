@@ -110,6 +110,10 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    @apply text-[14px] md:text-[16px] lg:text-[18px];
+  }
+
   body {
     font-family: 'Space Grotesk', sans-serif;
     background: #d0d0d0;
@@ -119,6 +123,25 @@
     overflow-y: auto;
     line-height: 1.6;
     @apply text-foreground;
+  }
+
+  h1,
+  .h1 {
+    @apply text-3xl md:text-5xl lg:text-6xl font-bold;
+  }
+
+  h2,
+  .h2 {
+    @apply text-2xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  h3,
+  .h3 {
+    @apply text-xl md:text-3xl lg:text-4xl font-bold;
+  }
+
+  button {
+    @apply text-sm md:text-base lg:text-lg;
   }
 }
 
@@ -172,7 +195,7 @@
 }
 
 .section-title {
-  font-size: 2rem;
+  @apply text-xl md:text-3xl lg:text-4xl;
   font-weight: 700;
   margin-bottom: 1.5rem;
   letter-spacing: -0.5px;

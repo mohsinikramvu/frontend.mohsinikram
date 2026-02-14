@@ -145,7 +145,7 @@ export default function SkillsSection() {
                 {/* Header with icon and title */}
                 <div className="flex items-center gap-3 mb-6 pb-4 border-b-3 border-black">
                   <span className="group-hover:scale-125 transition-all ease-in-out">{card.icon}</span>
-                  <h3 className="text-xl font-black text-black">{card.category}</h3>
+                  <h3 className="text-lg md:text-xl font-black text-black">{card.category}</h3>
                 </div>
 
                 {/* Skills badges */}
@@ -166,7 +166,7 @@ export default function SkillsSection() {
                         duration: 0.2,
                         ease: "easeInOut",
                       }}
-                      className="border-2 border-black px-3 py-2 text-sm font-bold text-black"
+                      className="border-2 border-black px-3 py-2 text-xs md:text-sm font-bold text-black"
                     >
                       {skill}
                     </motion.div>
@@ -208,7 +208,7 @@ export default function SkillsSection() {
                 className="border-3 border-black p-6 bg-white"
               >
                 <div className="space-y-6">
-                  <h4 className="text-2xl font-black text-black mb-2">Bachelor's Degree in Computer Science</h4>
+                  <h4 className="text-xl md:text-2xl font-black text-black mb-2">Bachelor's Degree in Computer Science</h4>
                   <p className="text-gray-700 font-bold mb-4">Virtual University of Pakistan</p>
 
                   <motion.div
@@ -251,7 +251,7 @@ export default function SkillsSection() {
                     viewport={{ once: false, amount: 0.3 }}
                     className="border-3 border-black rounded-sm p-4 flex items-center justify-between hover:bg-yellow-50 transition-colors duration-300"
                   >
-                    <span className="font-bold text-lg text-black">{lang.language}</span>
+                    <span className="font-bold text-base md:text-lg text-black">{lang.language}</span>
                     <div className="flex gap-2">
                       {[...Array(3)].map((_, i) => (
                         <motion.div

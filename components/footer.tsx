@@ -58,7 +58,7 @@ export default function Footer({ name, title, onNavChange }: FooterProps) {
         </div>
 
         {/* Bottom Section - Copyright */}
-        <div className="flex flex-wrap items-center justify-between gap-8 border-t-2 border-gray-300 mt-8 pt-6">
+        <div className="flex flex-wrap items-center justify-between gap-4 lg:gap-8 border-t-2 border-gray-300 mt-8 pt-6">
           <motion.div
             className="text-center md:text-left"
             initial={{ opacity: 0 }}
