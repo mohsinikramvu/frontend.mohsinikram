@@ -81,94 +81,6 @@ const center = {
 const mapOptions = {
   disableDefaultUI: true,
   zoomControl: false,
-  styles: [
-    {
-      "elementType": "geometry",
-      "stylers": [{ "color": "#fdf7e3" }] // Light warm background
-    },
-    {
-      "elementType": "labels.icon",
-      "stylers": [{ "visibility": "off" }]
-    },
-    {
-      "elementType": "labels.text.fill",
-      "stylers": [{ "color": "#616161" }]
-    },
-    {
-      "elementType": "labels.text.stroke",
-      "stylers": [{ "color": "#f5f5f5" }]
-    },
-    {
-      "featureType": "administrative.land_parcel",
-      "elementType": "labels.text.fill",
-      "stylers": [{ "color": "#bdbdbd" }]
-    },
-    {
-      "featureType": "poi",
-      "elementType": "geometry",
-      "stylers": [{ "color": "#eeeeee" }]
-    },
-    {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [{ "color": "#757575" }]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "geometry",
-      "stylers": [{ "color": "#e5e5e5" }]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [{ "color": "#9e9e9e" }]
-    },
-    {
-      "featureType": "road",
-      "elementType": "geometry",
-      "stylers": [{ "color": "#ffffff" }]
-    },
-    {
-      "featureType": "road.arterial",
-      "elementType": "labels.text.fill",
-      "stylers": [{ "color": "#757575" }]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [{ "color": "#dadada" }]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "labels.text.fill",
-      "stylers": [{ "color": "#616161" }]
-    },
-    {
-      "featureType": "road.local",
-      "elementType": "labels.text.fill",
-      "stylers": [{ "color": "#9e9e9e" }]
-    },
-    {
-      "featureType": "transit.line",
-      "elementType": "geometry",
-      "stylers": [{ "color": "#e5e5e5" }]
-    },
-    {
-      "featureType": "transit.station",
-      "elementType": "geometry",
-      "stylers": [{ "color": "#eeeeee" }]
-    },
-    {
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [{ "color": "#c9c9c9" }]
-    },
-    {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [{ "color": "#9e9e9e" }]
-    }
-  ]
 };
 
 export default function JourneySection() {
@@ -177,6 +89,7 @@ export default function JourneySection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const isMobile = useIsMobile();
   const [map, setMap] = useState<google.maps.Map | null>(null)
+
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -386,14 +299,7 @@ export default function JourneySection() {
                 </motion.button>
               </div>
 
-              {/* Pirate character placeholder */}
-              <motion.div
-                className="absolute bottom-4 left-4 text-5xl z-10 pointer-events-none"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-              >
-                🏴‍☠️
-              </motion.div>
+
             </div>
           </motion.div>
         </div>
