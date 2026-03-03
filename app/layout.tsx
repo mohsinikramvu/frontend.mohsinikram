@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import Script from 'next/script'
 import "./globals.css"
 
 const spaceGrotesk = Space_Grotesk({
@@ -11,21 +12,21 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: "MI - Developer Portfolio",
-  description: "Animated portfolio and resume",
-  generator: "v0.app",
+  title: "MI - Mohsin Ikram",
+  description: "Senior Software Engineer | Team Lead",
+  generator: "NextJS",
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
+        url: "/favicon.png",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/icon-dark-32x32.png",
+        url: "/favicon.png",
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/icon.svg",
+        url: "/favicon.png",
         type: "image/svg+xml",
       },
     ],
@@ -43,6 +44,18 @@ export default function RootLayout({
       <body className={`${spaceGrotesk.variable} font-sans antialiased`}>
         {children}
         <Analytics />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-6C9Y97L9DK`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`            
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6C9Y97L9DK');
+          `}
+        </Script>
       </body>
     </html>
   )
